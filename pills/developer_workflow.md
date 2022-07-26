@@ -69,7 +69,7 @@ discussion in your feedback.
 # Implement the changes and commit them.
 git add .
 git commit -m "Changed the method name based on PR feedback"
-git push origin new-feature-calendar 
+git push
 ```
 
 ## 6. The PR is merged
