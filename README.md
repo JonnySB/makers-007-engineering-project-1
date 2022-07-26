@@ -30,9 +30,10 @@ Get together on a Zoom call (or gather in front of the same screen) and watch
 
 1. Create a private slack channel with all team members and invite the coach
    leading this week to that channel.
-2. One member in your group should fork the seed repo for this project, and add
-   the other members of your group as collaborators. Everyone will pull and push
-   to this fork.
+2. One member in your group [should fork the seed repo for this
+   project](https://github.com/makersacademy/makersbnb-ruby-seed), and add the
+   other members of your group as collaborators. Everyone will pull and push to
+   this fork.
 3. Add a link to this repo to the description of your team's slack channel.
 4. [Read the project specification together](./specification.md)
 5. Decide how you will work, by creating a small team charter — [here's a
@@ -42,7 +43,8 @@ Get together on a Zoom call (or gather in front of the same screen) and watch
    template.](https://trello.com/invite/b/g9JBypiG/efd9585fe05fadab98ee0008be9df673/engineering-project-i-template)
 7. Start turning the headline specifications into user stories and create one
    Trello ticket in the column "Backlog (all TODO)". 
-8. Get a break, and then start [your first sprint](#agile-sprints).
+8. Get a break, and then start [your first
+   sprint](#agile-sprints-and-ceremonies).
 
 ## Agile Sprints and Ceremonies
 
@@ -68,8 +70,8 @@ To start your first sprint:
      only](#minimum-viable-product-mvp). You can always extend the sprint with
      more tickets, if you find you're working faster than expected.
   3. Assign the first tickets to pairs.
-  4. Get into your pairs, [watch this video](#developer-workflow), and start the
-     work.
+  4. Get into your pairs, [watch this
+     video](https://www.youtube.com/watch?v=DDInr8vDQs0), and start the work.
 
 <!-- OMITTED -->
 
