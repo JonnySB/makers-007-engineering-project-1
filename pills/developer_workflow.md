@@ -1,7 +1,5 @@
 # Git and Github Developer Workflow
 
-@TODO video of coaches demonstrating developer workflow 
-
 ## 1. Pick a task
 
 Before anything else, create a new branch locally to work on it.
