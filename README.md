@@ -78,7 +78,8 @@ To start your first sprint:
      more tickets, if you find you're working faster than expected.
   3. Assign the first tickets to pairs.
   4. Get into your pairs, [watch this
-     video](https://www.youtube.com/watch?v=DDInr8vDQs0), and start the work.
+     video](https://www.youtube.com/watch?v=DDInr8vDQs0) and draw a diagram of the key stages of a developer workflow together.
+  5. Start planning your MVP (Minimum Viable Product)!
 
 <!-- OMITTED -->
 
@@ -93,14 +94,18 @@ here](./pills/developer_workflow.md)
 ## Minimum viable product (MVP)
 
 The smallest thing that implements the core idea. Think about what this is for
-Airbnb. Build those user stories first. This MVP will exclude most of the
-headline specification items in the spec.
+Airbnb. Build those user stories first. This MVP will not include many of the most
+exciting features in the specification.
 
 If your specification asks for a car, don't build the wheels in the first week,
 the doors in the second week, etc. The customer can't try it! Instead, build a
-skateboard in the first week.
+skateboard in the first week. 
 
-Aim to get to your MVP by the end of Tuesday.
+The MVP allows for an 'iterative' development of the project. That means that you try out a
+basic version of your project, get feedback on it, then use that feedback to improve the product
+or build new features. This ensures that what you are writing is very valuable to customers.
+
+Aim to get to your MVP by the *end of Tuesday* - this is the 'skateboard' of your project.
 
 ## Breaking down user stories into tasks
 
@@ -151,6 +156,10 @@ ticket.
   It's easy to get lost in the work and stretch yourself, but remember that this
   week's goal is also to learn how to work effectively. A team that is exhausted
   is not a great team to work in!
+* **Your body's health** - Make sure you're not sitting on the computer all day!
+  As a general rule, make sure you take a break and walk around every 45 mins to an hour, 
+  and to give your eyes regular breaks from the screen. It can be useful to have a little 
+  non-screen activity to bring your focus to in your breaks.
 * **Rushing to get things done** - releasing features is important, but you
   shouldn't sacrifice your process in order to rush ahead. It's often better to
   start slow, and invest more time into deep learning and having strong
@@ -185,6 +194,17 @@ applications](https://github.com/makersacademy/course/blob/main/pills/web_develo
 
 **How was this resource?**  
 [😫](https://airtable.com/shrUJ3t7KLMqVRFKR?prefill_Repository=makersacademy/engineering-project-1&prefill_File=README.md&prefill_Sentiment=😫) [😕](https://airtable.com/shrUJ3t7KLMqVRFKR?prefill_Repository=makersacademy/engineering-project-1&prefill_File=README.md&prefill_Sentiment=😕) [😐](https://airtable.com/shrUJ3t7KLMqVRFKR?prefill_Repository=makersacademy/engineering-project-1&prefill_File=README.md&prefill_Sentiment=😐) [🙂](https://airtable.com/shrUJ3t7KLMqVRFKR?prefill_Repository=makersacademy/engineering-project-1&prefill_File=README.md&prefill_Sentiment=🙂) [😀](https://airtable.com/shrUJ3t7KLMqVRFKR?prefill_Repository=makersacademy/engineering-project-1&prefill_File=README.md&prefill_Sentiment=😀)  
+Click an emoji to tell us.
+
+<!-- END GENERATED SECTION DO NOT EDIT -->
+
+
+<!-- BEGIN GENERATED SECTION DO NOT EDIT -->
+
+---
+
+**How was this resource?**  
+[😫](https://airtable.com/shrUJ3t7KLMqVRFKR?prefill_Repository=makersacademy%2Fengineering-project-1&prefill_File=README.md&prefill_Sentiment=😫) [😕](https://airtable.com/shrUJ3t7KLMqVRFKR?prefill_Repository=makersacademy%2Fengineering-project-1&prefill_File=README.md&prefill_Sentiment=😕) [😐](https://airtable.com/shrUJ3t7KLMqVRFKR?prefill_Repository=makersacademy%2Fengineering-project-1&prefill_File=README.md&prefill_Sentiment=😐) [🙂](https://airtable.com/shrUJ3t7KLMqVRFKR?prefill_Repository=makersacademy%2Fengineering-project-1&prefill_File=README.md&prefill_Sentiment=🙂) [😀](https://airtable.com/shrUJ3t7KLMqVRFKR?prefill_Repository=makersacademy%2Fengineering-project-1&prefill_File=README.md&prefill_Sentiment=😀)  
 Click an emoji to tell us.
 
 <!-- END GENERATED SECTION DO NOT EDIT -->
