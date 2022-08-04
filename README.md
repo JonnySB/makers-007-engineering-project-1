@@ -55,12 +55,11 @@ suggested schedule:
   * Monday to Tuesday - Sprint #1
   * Wednesday to Thursday - Sprint #2
   * Friday - Sprint #3
-  * Stand-up every morning (15 min) after your peer groups check-ins.
+  * [Stand-up every morning](./pills/how_to_run_standup.md) (15 min) after your peer groups check-ins.
     * This should ideally last no more than 15 minutes.
     * Everyone shares what they've worked on the previous day, what they'll work
       on today, and any blockers that need the attention of the team.
-  * Retro at the end of both sprints (and recommended at the end of each day of
-    work).
+  * [Retro at the end of both sprints](./pills/how_to_run_retro.md)
       * Use these retros to reflect on your work as team, and bring up any
         issues. This is not a session to discuss technical details or review
         code, but rather think of _how_ the team worked so far, and what could
