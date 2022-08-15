@@ -40,7 +40,7 @@ Get together on a Zoom call (or gather in front of the same screen) and watch
    template you can
    use](https://docs.google.com/document/d/1JbXksrTlu_-kCvq-ITzLucvFvv3QOFN9P_LsTRfQ3kM/edit).
 6. Create a Trello board for your project, [using this
-   template.](https://trello.com/invite/b/g9JBypiG/efd9585fe05fadab98ee0008be9df673/engineering-project-i-template)
+   template.](https://trello.com/b/g9JBypiG)
 7. Start turning the headline specifications into user stories and create one
    Trello ticket in the column "Backlog (all TODO)". 
 8. Get a break, and then start [your first
