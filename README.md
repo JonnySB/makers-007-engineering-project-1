@@ -62,8 +62,8 @@ should use the "Assign To" feature to track who is working on the ticket).
 testing activities are still pending.
 * **Done** - Tickets which the team have deemed to be completed.
 
-Once you've built your board, and you begin to add tickets, it should begin to 
-look something like this:
+Once you've built your board, and you begin to add tickets, it should look 
+similar to this:
 
 ![A mockup of a Trello board](./trello_mockup.png)
 
