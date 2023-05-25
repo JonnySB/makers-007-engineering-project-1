@@ -30,7 +30,7 @@ Get together on a Zoom call (or gather in front of the same screen) and watch
 
 1. Create a private slack channel with all team members and invite the coach
    leading this week to that channel.
-2. One member in your group[should fork the seed repo for this project (either 
+2. One member in your group should fork the seed repo for this project (either 
    the [Ruby](https://github.com/makersacademy/makersbnb-ruby-seed) or 
    [Python](https://github.com/makersacademy/makersbnb-python-seed) version), and 
    add the other members of your group as collaborators. Everyone will pull and 
