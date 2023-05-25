@@ -13,8 +13,6 @@ This week you will:
 * Learn to use the developer workflow to plan, implement and peer-review
   features.
 
-<!-- OMITTED -->
-
 ## Introduction
 
 Your coach will share the teams with you this morning. Once you have them,
@@ -23,8 +21,6 @@ that channel.
 
 Get together on a Zoom call (or gather in front of the same screen) and watch
 [this introduction video.](https://www.youtube.com/watch?v=eHHY9EYZtUE)
-
-<!-- OMITTED -->
 
 ## Project Setup
 
@@ -40,12 +36,36 @@ Get together on a Zoom call (or gather in front of the same screen) and watch
 5. Decide how you will work, by creating a small team charter — [here's a
    template you can
    use](https://docs.google.com/document/d/1JbXksrTlu_-kCvq-ITzLucvFvv3QOFN9P_LsTRfQ3kM/edit).
-6. Create a Trello board for your project, [using this
-   template.](https://trello.com/b/g9JBypiG)
+6. Create a Trello board for your project, with columns as listed below, and 
+   invite all of your team members (plus coaches) to join the board.
 7. Start turning the headline specifications into user stories and create one
    Trello ticket in the column "Backlog (all TODO)". 
 8. Get a break, and then start [your first
    sprint](#agile-sprints-and-ceremonies).
+
+## Your Trello board
+
+Trello is an application for visualising your development workflow in a kanban 
+style, allowing you to create tickets and assign them to team members to work 
+on.
+
+We recommend creating the following minimal set of columns on your board; you 
+can drag tickets between columns as your work progresses.
+
+* **Backlog (All TODO)** - A list of upcoming tickets that the team have not 
+yet committed to working on.
+* **Current Sprint** - Work which the team has committed to completing in the 
+current sprint (see "Agile Sprints and Ceremonies" below).
+* **In progress** - Tickets which are being actively worked upon right now (you 
+should use the "Assign To" feature to track who is working on the ticket).
+* **In review** - Tickets which are code-complete, but where code review or 
+testing activities are still pending.
+* **Done** - Tickets which the team have deemed to be completed.
+
+Once you've built your board, and you begin to add tickets, it should begin to 
+look something like this:
+
+![A mockup of a Trello board](./trello_mockup.png)
 
 ## Agile Sprints and Ceremonies
 
@@ -66,8 +86,6 @@ suggested schedule:
         code, but rather think of _how_ the team worked so far, and what could
         be improved.
 
-<!-- OMITTED -->
-
 To start your first sprint:
   1. Get together as a team.
   2. Pick a few tickets from the tickets backlog, and move them to the "Current
@@ -80,8 +98,6 @@ To start your first sprint:
   4. Get into your pairs, [watch this
      video](https://www.youtube.com/watch?v=DDInr8vDQs0) and draw a diagram of the key stages of a developer workflow together.
   5. Start planning your MVP (Minimum Viable Product)!
-
-<!-- OMITTED -->
 
 ## Developer Workflow
 
@@ -167,9 +183,8 @@ ticket.
 * **Sidelining testing** - more than ever, TDD and other software engineering
   practices you've learned so far will be important this week. Make sure that
   you don't skip over them. They will slow you down a bit at first, but it will
-  pay off on the long run. If you din't they're slowing you down _too much_,
-  maybe there is something to correct in your process — your coach can support
-  with this.
+  pay off on the long run. If they're slowing you down _too much_, maybe there 
+  is something to correct in your process — your coach can support with this.
 * **Everyone's voice isn't heard** - it's important that everyone in the team
   gets their say on the project and how the team works, and that everyone feels
   like they can contribute, even if you're at different technical levels. If you
@@ -187,17 +202,6 @@ loading static files (CSS, images, etc.).
 This week you might find it useful to expand your web development tool kit -
 [this pill includes some helpful resources for building user-friendly
 applications](https://github.com/makersacademy/course/blob/main/pills/web_development_tools.md).
-
-<!-- BEGIN GENERATED SECTION DO NOT EDIT -->
-
----
-
-**How was this resource?**  
-[😫](https://airtable.com/shrUJ3t7KLMqVRFKR?prefill_Repository=makersacademy/engineering-project-1&prefill_File=README.md&prefill_Sentiment=😫) [😕](https://airtable.com/shrUJ3t7KLMqVRFKR?prefill_Repository=makersacademy/engineering-project-1&prefill_File=README.md&prefill_Sentiment=😕) [😐](https://airtable.com/shrUJ3t7KLMqVRFKR?prefill_Repository=makersacademy/engineering-project-1&prefill_File=README.md&prefill_Sentiment=😐) [🙂](https://airtable.com/shrUJ3t7KLMqVRFKR?prefill_Repository=makersacademy/engineering-project-1&prefill_File=README.md&prefill_Sentiment=🙂) [😀](https://airtable.com/shrUJ3t7KLMqVRFKR?prefill_Repository=makersacademy/engineering-project-1&prefill_File=README.md&prefill_Sentiment=😀)  
-Click an emoji to tell us.
-
-<!-- END GENERATED SECTION DO NOT EDIT -->
-
 
 <!-- BEGIN GENERATED SECTION DO NOT EDIT -->
 
