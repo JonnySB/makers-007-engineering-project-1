@@ -16,7 +16,7 @@ This week you will:
 ## Introduction
 
 Your coach will share the teams with you this morning. Once you have them,
-create a private slack channel with all team members and invite your coach to
+create a private Slack channel with all team members and invite your coach to
 that channel.
 
 Get together on a Zoom call (or gather in front of the same screen) and watch
@@ -24,22 +24,23 @@ Get together on a Zoom call (or gather in front of the same screen) and watch
 
 ## Project Setup
 
-1. Create a private slack channel with all team members and invite the coach
-   leading this week to that channel.
+1. If you don't already have one for your team, create a private Slack channel 
+   with all team members and invite your coaches to that channel.
 2. One member in your group should fork the seed repo for this project (either 
    the [Ruby](https://github.com/makersacademy/makersbnb-ruby-seed) or 
    [Python](https://github.com/makersacademy/makersbnb-python-seed) version), and 
    add the other members of your group as collaborators. Everyone will pull and 
    push to this fork.
-3. Add a link to this repo to the description of your team's slack channel.
-4. [Read the project specification together](./specification.md)
-5. Decide how you will work, by creating a small team charter — [here's a
+3. [Read the project specification together](./specification.md)
+4. Decide how you will work, by creating a small team charter — [here's a
    template you can
    use](https://docs.google.com/document/d/1JbXksrTlu_-kCvq-ITzLucvFvv3QOFN9P_LsTRfQ3kM/edit).
-6. Create a Trello board for your project, with columns as listed below, and 
+5. Create a Trello board for your project, with columns as listed below, and 
    invite all of your team members (plus coaches) to join the board.
-7. Start turning the headline specifications into user stories and create one
+6. Start turning the headline specifications into user stories and create one
    Trello ticket in the column "Backlog (all TODO)". 
+7. Add bookmarks in your team's Slack channel to the Trello board, GitHub repo 
+   and Team Charter for your team and coaches to use.
 8. Get a break, and then start [your first
    sprint](#agile-sprints-and-ceremonies).
 
