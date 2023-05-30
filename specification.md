@@ -15,18 +15,18 @@ We would like a web application that allows users to list spaces they have avail
 ### Nice-to-haves
 
 - Users should receive an email whenever one of the following happens:
- - They sign up
- - They create a space
- - They update a space
- - A user requests to book their space
- - They confirm a request
- - They request to book a space
- - Their request to book a space is confirmed
- - Their request to book a space is denied
+  - They sign up
+  - They create a space
+  - They update a space
+  - A user requests to book their space
+  - They confirm a request
+  - They request to book a space
+  - Their request to book a space is confirmed
+  - Their request to book a space is denied
 - Users should receive a text message to a provided number whenever one of the following happens:
- - A user requests to book their space
- - Their request to book a space is confirmed
- - Their request to book a space is denied
+  - A user requests to book their space
+  - Their request to book a space is confirmed
+  - Their request to book a space is denied
 - A ‘chat’ functionality once a space has been booked, allowing users whose space-booking request has been confirmed to chat with the user that owns that space
 - Basic payment implementation though Stripe.
 
