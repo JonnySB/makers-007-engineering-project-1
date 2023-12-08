@@ -66,7 +66,7 @@ testing activities are still pending.
 Once you've built your board, and you begin to add tickets, it should look 
 similar to this:
 
-![A mockup of a Trello board](./trello_mockup.png)
+![A mockup of a Trello board with columns of: backlog (with lots of tickets), the current sprint (with some tickets), in progress, in review and done](./trello_mockup.png)
 
 ## Agile Sprints and Ceremonies
 
