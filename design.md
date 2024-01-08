@@ -15,7 +15,7 @@
     I want to be able to enter my details and create a user account.
 
     Questions:
-    - Do you want authentication/ login for any user using the web-app?
+    - Do you want authentication/ login for any user using the web-app? No need for MVP. Keep simple.
     - What details are required for the sign up?
     - Do users sign up as guests/hosts respectively, or do they have the ability to do both?
 
@@ -25,16 +25,16 @@
 
     Questions:
     - How would you like this list to be sorted?
-    - What information should be displayed? Availability?
-    - Can you then click on a space and view it in more detail? (user story 8)
-    - Do users still want to see those spaces that are currently unavailable?
+    - What information should be displayed? Availability? Name, description, price, availability (extension: photo)
+    - Can you then click on a space and view it in more detail? (user story 8) keep simple for MVP
+    - Do users still want to see those spaces that are currently unavailable? yes, just can't book it
 
 4.  As a host,
     So that I can list a space,
     I want to be able to add a space to the list.
 
     Questions:
-    - Each listing has an owner?
+    - Each listing has an owner? Maybe not for MVP but ideally for demo
     
 5.  As a host,
     So that I can list multiple spaces,
@@ -42,7 +42,7 @@
 
     Questions:
     - How do you imagine you will be able to manage your listings?
-    - What CRUD applications are required?
+    - What CRUD applications are required? Updating probably out of scope. Assess after MVP.
 
 6.  As a host,
     So that I can provide details about a specific space,
@@ -56,7 +56,7 @@
     I want to be able to offer a range of dates of availablity.
 
     Questions:
-    - Is this just a start and end date?
+    - Is this just a start and end date? yes for now. Dates join table 
     - Calendar package?
 
 8.  As a guest,
@@ -65,17 +65,17 @@
     date.
 
     Questions:
-    - Calendar with view of available/unavailable dates?
-    - More simplistic with error messages?
+    - Calendar with view of available/unavailable dates? Simplistic for MVP
+    - More simplistic with error messages? 
     - Is this achievable from list view or must user be taken to details page?
-    - Can a user only book one night at a time?
+    - Can a user only book one night at a time? Yes
 
 9.  As a host,
     So that I rent a space to another user,
     I want to be able to confirm a booking request (as per user story 6)
 
     Questions:
-    - How is the host expected to accept request?
+    - How is the host expected to accept request? For MVP, perhaps booking is auto-confirmed 
 
 10.  As a guest,
     So that I can hire a space,
