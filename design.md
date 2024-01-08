@@ -15,44 +15,83 @@
     So that I can sign up,
     I want to be able to enter my details and create a user account.
 
+    Questions: - Do you want authentication/ login for any user using the web-app? -
+
 2.  As a host,
     So that I can list a space,
     I want to be able to list a space
+
+    Questions:
+
+    -
 
 3.  As a host,
     So that I can list multiple spaces,
     I want to be able to list multiple spaces.
 
+    Questions:
+
+    -
+
 4.  As a host,
     So that I can provide details about a specific space,
     I want to be able to add a name, description and price.
 
+    Questions:
+
+    -
+
 5.  As a host,
     So that I provide availablity for my space,
     I want to be able to offer a range of dates of availablity.
+
+    Questions:
+
+    -
 
 6.  As a guest,
     So that I can book a space,
     I want to be able to make a booking request for a specific space on a specific
     date.
 
+    Questions:
+
+    -
+
 7.  As a host,
     So that I rent a space to another user,
     I want to be able to approve a specific request (as per user story 6)
+
+    Questions:
+
+    -
 
 8.  As a host,
     So that I can manage my bookings
     I want to be able to confirm my bookings.
 
+    Questions:
+
+    -
+
 9.  As a host,
     So that I avoid booking clashes,
     I want to make my listing unavailable when a booking is confirmed.
+
+    Questions:
+
+    -
 
 10. As a guest,
     When I look at listings
     I want to only see available listings.
 
+    Questions:
+
+    -
+
 # Client questions:
 
-- Do you want authentication/ login for any user using the web-app.
-- Do you want a view for the host and a view for the guests?
+- Do you want authentication/ login for any user using the web-app?
+- Do you want a view for the host and a view for the guests? I.e. to manage bookings/ booking requests.
+-
