@@ -52,7 +52,7 @@
     When I look at listings
     I want to only see available listings.
 
-Follow up questions:
+# Client questions:
 
-- Does the client want proper authentication/ login for any user using the web-app.
-- Do you want a view for the host and a view for the guests.
+- Do you want authentication/ login for any user using the web-app.
+- Do you want a view for the host and a view for the guests?
