@@ -7,7 +7,6 @@
 - Any signed-up user can request to hire any space for one night, and this should be approved by the user that owns that space.
 - Nights for which a space has already been booked should not be available for users to book that space.
 - Until a user has confirmed a booking request, that space can still be booked for that night.
-- Any signed-up user can list a new space.
 
 # User Stories:
 
@@ -15,83 +14,83 @@
     So that I can sign up,
     I want to be able to enter my details and create a user account.
 
-    Questions: - Do you want authentication/ login for any user using the web-app? -
+    Questions:
+    - Do you want authentication/ login for any user using the web-app?
+    - What details are required for the sign up?
+    - Do users sign up as guests/hosts respectively, or do they have the ability to do both?
 
-2.  As a host,
-    So that I can list a space,
-    I want to be able to list a space
+2.  As a guest,
+    So that I can view all available spaces,
+    I want to see a list of all the spaces.
 
     Questions:
+    - How would you like this list to be sorted?
+    - What information should be displayed? Availability?
+    - Can you then click on a space and view it in more detail? (user story 8)
+    - Do users still want to see those spaces that are currently unavailable?
 
-    -
+4.  As a host,
+    So that I can list a space,
+    I want to be able to add a space to the list.
 
-3.  As a host,
+    Questions:
+    - Each listing has an owner?
+    
+5.  As a host,
     So that I can list multiple spaces,
     I want to be able to list multiple spaces.
 
     Questions:
+    - How do you imagine you will be able to manage your listings?
+    - What CRUD applications are required?
 
-    -
-
-4.  As a host,
+6.  As a host,
     So that I can provide details about a specific space,
     I want to be able to add a name, description and price.
 
     Questions:
+    - 
 
-    -
-
-5.  As a host,
+7.  As a host,
     So that I provide availablity for my space,
     I want to be able to offer a range of dates of availablity.
 
     Questions:
+    - Is this just a start and end date?
+    - Calendar package?
 
-    -
-
-6.  As a guest,
+8.  As a guest,
     So that I can book a space,
     I want to be able to make a booking request for a specific space on a specific
     date.
 
     Questions:
-
-    -
-
-7.  As a host,
-    So that I rent a space to another user,
-    I want to be able to approve a specific request (as per user story 6)
-
-    Questions:
-
-    -
-
-8.  As a host,
-    So that I can manage my bookings
-    I want to be able to confirm my bookings.
-
-    Questions:
-
-    -
+    - Calendar with view of available/unavailable dates?
+    - More simplistic with error messages?
+    - Is this achievable from list view or must user be taken to details page?
+    - Can a user only book one night at a time?
 
 9.  As a host,
+    So that I rent a space to another user,
+    I want to be able to confirm a booking request (as per user story 6)
+
+    Questions:
+    - How is the host expected to accept request?
+
+10.  As a guest,
+    So that I can hire a space,
+    I want to be able to send my booking request to the space owner.
+
+    Questions:
+    - Is this a duplication of user story 8?
+    
+
+11.  As a host,
     So that I avoid booking clashes,
     I want to make my listing unavailable when a booking is confirmed.
 
     Questions:
+    - How is the guest expected to know when their booking is confirmed? Confirmed/declined?
 
-    -
 
-10. As a guest,
-    When I look at listings
-    I want to only see available listings.
 
-    Questions:
-
-    -
-
-# Client questions:
-
-- Do you want authentication/ login for any user using the web-app?
-- Do you want a view for the host and a view for the guests? I.e. to manage bookings/ booking requests.
--
