@@ -8,20 +8,16 @@ parts of the project work, or you can delete it and start from scratch.
 
 There are two videos to support:
 
-* [A demonstration of setting up the project](https://www.youtube.com/watch?v=YStsRfMVx44&t=0s)
-* [A walkthrough of the project codebase](https://www.youtube.com/watch?v=YStsRfMVx44&t=314s) 
+- [A demonstration of setting up the project](https://www.youtube.com/watch?v=YStsRfMVx44&t=0s)
+- [A walkthrough of the project codebase](https://www.youtube.com/watch?v=YStsRfMVx44&t=314s)
 
 ## Setup
 
 ```shell
 # Clone the repository to your local machine
-; git clone git@github.com:makersacademy/web-applications-in-python-project-starter-html.git YOUR_PROJECT_NAME
+; git clone https://github.com/JonnySB/makers-007-engineering-project-1.git
 
-# Or, if you don't have SSH keys set up
-; git clone https://github.com/makersacademy/web-applications-in-python-project-starter-html.git YOUR_PROJECT_NAME
-
-# Enter the directory
-; cd YOUR_PROJECT_NAME
+; cd makers-007-engineering-project-1
 
 # Install dependencies and set up the virtual environment
 ; pipenv install
@@ -34,8 +30,8 @@ There are two videos to support:
 # If you have problems with the above, contact your coach
 
 # Create a test and development database
-; createdb YOUR_PROJECT_NAME
-; createdb YOUR_PROJECT_NAME_test
+; createdb MAKERS_BNB
+; createdb MAKERS_BNB_test
 
 # Open lib/database_connection.py and change the database names
 ; open lib/database_connection.py
@@ -56,7 +52,6 @@ If you would like to remove the example code:
 ```shell
 ; ./remove_example_code.sh
 ```
-
 
 <!-- BEGIN GENERATED SECTION DO NOT EDIT -->
 
