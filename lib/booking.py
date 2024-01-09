@@ -11,7 +11,7 @@ class Booking:
 
     # return nicely formatted string version of peep object
     def __repr__(self):
-        return f"Peep({self.id}, {self.message}, {self.date_created}, {self.user_id})"
+        return f"Booking({self.id}, {self.date}, {self.available}, {self.space_id})"
 
     def book(self):
         pass
