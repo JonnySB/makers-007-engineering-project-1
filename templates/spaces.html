@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Home</title>
+    </head>
+    <body>
+        <h1>
+            All Listings
+        </h1>
+        {% for space in spaces %}
+            <p class="t-space-name">{{ space.name }}</p>
+            <p class="t-space-description">{{ space.description }}</p>
+            <p class="t-space-price">£{{ space.price }}</p>
+            <a>Details</a>
+        {% endfor %}
+    </body>
+</html>
