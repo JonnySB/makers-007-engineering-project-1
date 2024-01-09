@@ -7,11 +7,12 @@ class BookingRepository:
 
     def get_by_id(self, space_id):
         rows = self._connection.execute(
-            "SELECT * FROM bookings WHERE id = %s",
+            "SELECT * FROM bookings WHERE space_id = %s",
             [space_id],
         )
 
         bookings = []
+        print(rows)
         for row in rows:
             bookings.append(
                 Booking(
