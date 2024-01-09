@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Book Store</title>
+    <meta charset="utf-8">
+  </head>
+  <body>
+    <h1>Single Book</h1>
+    <p class="t-title">Title: {{book.title}}</p>
+    <p class="t-author-name">Author: {{book.author_name}}</p>
+
+    <!-- To have a delete button with a post request, we need a form -->
+    <!-- Note, we use `POST /books/<id>/delete because browsers can't send DELETE methods! -->
+    <form action="/books/{{book.id}}/delete" method="post">
+      <input type="submit" value="Delete Book">
+    </form>
+
+    <!-- This is a link to another page. -->
+    <!-- The browser will send `GET /books/new` when the user clicks this -->
+    <a href="/books">Back to all books</a>
+  </body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Book Store</title>
+    <meta charset="utf-8">
+  </head>
+  <body>
+    <h1>New Book</h1>
+    <!-- This creates a form that will submit to POST /books -->
+    <form action="/books" method="post">
+
+      <!-- We check to see if there are any errors from a previous submission -->
+      {% if errors %}
+        <!-- If so, we show them. -->
+        <p class="t-errors">
+          There were errors with your submission: {{ errors }}
+        </p>
+      {% endif %}
+
+      <p>
+        <!-- These `label` tags are important for accessibility -->
+        <label for="title">Title</label>
+
+        <!-- The `type` attribute says what kind of field this is -->
+        <!-- The `name` attribute says what parameter name should be sent to the server -->
+        <!-- The `id` field here is used to link it to the `for` tag in the label -->
+        <input type="text" name="title" id="title">
+      </p>
+      <p>
+        <label for="author_name">Author</label>
+        <input type="text" name="author_name" id="author_name">
+      </p>
+      <p>
+        <!-- `type` is submit here, to indicate it is a button -->
+        <!-- `value` is used as the button's text -->
+        <input type="submit" value="Create Book">
+      </p>
+    </form>
+  </body>
+</html>
