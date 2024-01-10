@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Space</title>
+    </head>
+    <body>
+        <style>
+            html {
+                padding: 10px;
+            }
+            nav {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+        </style>
+
+        <h1 class="t-space-name">{{ space.name }}</h1>
+        <p class="t-space-description">{{ space.description }}</p>
+        <p class="t-space-price">£{{ space.price }}</p>
+
+        <table style="width:50%"">
+            {% for booking in bookings %}
+                <tr>
+                    <td class="t-space-date">{{ booking.date }}</td>
+                    {% if booking.available == True %}
+                    <td class="t-space-availability">Available</td>
+                    <td><a href="/spaces/rent/{{booking.id}}/{{space.id}}">Rent</a></td>
+                    {% else %}
+                    <td class="t-space-availability">Unavailable</td>
+                    <td class="t-space-availability">Rent</td>
+                    {% endif %}
+                </tr>
+            {% endfor %}
+        </table>
+
+    </body>
+</html>
