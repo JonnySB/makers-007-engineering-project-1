@@ -53,108 +53,144 @@ If you would like to remove the example code:
 ; ./remove_example_code.sh
 ```
 
-# Git and Github Developer Workflow
+# Guide for using Git/GitHub
 
-## 1. Pick a task
+## 1.  Add all your files, commit and push to your branch.
 
-Before anything else, create a new branch locally to work on it.
-
-```bash
-# Make sure you're on main
-# with the latest changes on main
-# (this will help to avoid conflicts later on).
-git checkout main
-git pull origin main
-
-# Create a new branch (branching out from main).
-# Make sure the branch name is descriptive of the 
-# task, bug or feature you're working on.
-git checkout -b new-feature-calendar
-```
-
-## 2. Test-drive and Implement the feature
-
-Then commit your work, and push the branch:
-
-```bash
+When in the branch you're working in, and you're happy with all your changes, use the following:
+```shell
+```shell
 git add .
-
-# Make sure the commit message is descriptive
-# of the changes (so it's easier to find it later).
-git commit -m "Implement the calendar feature on the booking page"
-
-git push -u origin new-feature-calendar
-```
-
-## 3. Open a pull request
-
-_The guidance below is for the developers who implemented the changes, and will open the PR - the PR's owners._
-
-A pull request (PR), also called a _diff_, is a way to list all the changes you made on
-your branch that are not on the `main` branch yet. By reviewing these changes, your team
-is able to see what will get merged in the main branch, and have the opportunity to review
-it and make suggestions to improve the code before it gets merged.
-
-Make sure your PR's title and description contains enough details for someone else who's
-not familiar with the code to review. Once the PR is created, send the link to your team.
-
-## 4. Someone else reviews the PR
-
-_The guidance below is for the developer who will review the PR._
-
-A code review is usually a task done alone. This is because reviewing code takes a lot of
-cognitive effort, so it's important to focus on the code and make note of anything you
-feel should be changed.
-
-Avoid suggesting too many things — focus on offering feedback to _improve_ the PR, by
-pointing out a couple of changes you feel would be important (code readability, OOP and
-design, improve the tests...), but also offer _validation_ feedback on something you think
-was done really well.
-
-When suggesting changes, try to tie it to the software engineering practices you've
-learned and used so far, and make sure it will be useful to the PR's owner to improve the
-code. Make it an observation, rather than a judgement, and always leave the room for
-discussion in your feedback.
-
-## 5. The PR owner will make changes based on the feedback
-
-```bash
-# Implement the changes and commit them.
-git add .
-git commit -m "Changed the method name based on PR feedback"
+git commit -m "Your commit message"
 git push
 ```
 
-## 6. The PR is merged
+## 2. Checkout to main and pull any changes from main
 
-Merging the PR on Github means the branch is merged into `main` by Github on the central
-repository. The task is done.
-
-After this, make sure everyone pulls the latest version of `main`, before starting a new
-branch.
-
-```bash
+Switch to the main branch and pull any changes from there:
+```
 git checkout main
 
 git pull origin main
 ```
 
-If you're already working on another branch, it's also good, before opening a PR, to merge
-the latest `main` _into your branch_. This reduces the potential amount of changes between
-your branch and `main`, and avoids having too many conflicts when opening a PR.
+For example:
+```shell
+➜  makers-007-engineering-project-1 git:(story-2-list-spaces) git checkout main
+Switched to branch 'main'
+Your branch is up to date with 'origin/main'.
+➜  makers-007-engineering-project-1 git:(main) git pull
+remote: Enumerating objects: 66, done.
+remote: Counting objects: 100% (62/62), done.
+remote: Compressing objects: 100% (28/28), done.
+remote: Total 42 (delta 23), reused 33 (delta 14), pack-reused 0
+Unpacking objects: 100% (42/42), 9.66 KiB | 309.00 KiB/s, done.
+From https://github.com/JonnySB/makers-007-engineering-project-1
+   e548da6..086f6bf  branch_user_story1 -> origin/branch_user_story1
+   f245360..eb5efea  story_7            -> origin/story_7
+Already up to date.
+```
 
-```bash
-# On your feature branch.
-git checkout new-feature-calendar
+## 3. Checkout to your branch and merge it with the main branch
 
-# Fetching and merging the latest main
-# into your feature branch.
+Switch to your branch and merge it with the main branch.
+```shell
+git checkout your-branch-name
+
 git fetch
 git merge origin/main
-
-# Push your feature branch.
-git push origin new-feature-calendar
 ```
+
+For example:
+```shell
+➜  makers-007-engineering-project-1 git:(main) git checkout story-2-list-spaces
+Switched to branch 'story-2-list-spaces'
+Your branch is up to date with 'origin/story-2-list-spaces'.
+➜  makers-007-engineering-project-1 git:(story-2-list-spaces) git fetch
+➜  makers-007-engineering-project-1 git:(story-2-list-spaces) git merge origin/main
+Merge made by the 'ort' strategy.
+ lib/booking.py        | 15 +++++++++++++--
+ lib/users.py          | 12 ++++++++++++
+ tests/test_booking.py | 19 +++++++++++++++++++
+ 3 files changed, 44 insertions(+), 2 deletions(-)
+ create mode 100644 lib/users.py
+ create mode 100644 tests/test_booking.py
+```
+
+## 4. Retest all your code with the new changes from main
+
+Once you've merged your branch with the main, open your virtual environment and retest all your code with **pytest** and also **checking the html pages are working appropriately**.
+
+For example:
+```shell
+➜  makers-007-engineering-project-1 git:(story-2-list-spaces) pipenv shell
+Launching subshell in virtual environment...
+ . /Users/mattwshepherd/.local/share/virtualenvs/makers-007-engineering-project-1-Tkx7Kyu9/bin/activate
+➜  makers-007-engineering-project-1 git:(story-2-list-spaces)  . /Users/mattwshepherd/.local/share/virtualenvs/makers-007
+-engineering-project-1-Tkx7Kyu9/bin/activate
+(makers-007-engineering-project-1) ➜  makers-007-engineering-project-1 git:(story-2-list-spaces) pytest
+================================================== test session starts ==================================================
+platform darwin -- Python 3.11.2, pytest-7.4.3, pluggy-1.3.0
+rootdir: /Users/mattwshepherd/Documents/MakersCode/06_engineering_project_1/makers-007-engineering-project-1
+plugins: xprocess-0.23.0, playwright-0.4.3, base-url-2.0.0
+collected 8 items
+
+tests/test_app.py .                                                                                               [ 12%]
+tests/test_booking.py ..                                                                                          [ 37%]
+tests/test_database_connection.py .                                                                               [ 50%]
+tests/test_space.py ...                                                                                           [ 87%]
+tests/test_space_repository.py .                                                                                  [100%]
+
+=================================================== 8 passed in 1.90s ==================================================
+➜  makers-007-engineering-project-1 git:(story-2-list-spaces)  . /Users/mattwshepherd/.local/share/virtualenvs/makers-007
+-engineering-project-1-Tkx7Kyu9/bin/activate
+(makers-007-engineering-project-1) ➜  makers-007-engineering-project-1 git:(story-2-list-spaces) python app.py
+ * Serving Flask app 'app'
+ * Debug mode: on
+WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.
+ * Running on http://127.0.0.1:5001
+Press CTRL+C to quit
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 114-236-802
+127.0.0.1 - - [10/Jan/2024 10:54:48] "GET /spaces?vscodeBrowserReqId=1704884088786 HTTP/1.1" 200 -
+^C%
+```
+
+If you're happy and there are no changes, exit your virtual environment.
+
+For example:
+```shell
+(makers-007-engineering-project-1) ➜  makers-007-engineering-project-1 git:(story-2-list-spaces) exit
+```
+
+If there were changes, **repeat step 1**.
+
+## 5. Push your final changes
+
+Push your final changes when you're happy.
+
+```shell
+git push origin your-branch-name
+```
+
+Or if you're in your branch, just use
+```shell
+git push
+```
+
+## 6. Open up a pull request
+
+If you've successfully completed **steps 1-5**, and would like your branch to be merged onto the main branch, open up a **pull request** and ask for your team to review it.
+
+>[!CAUTION] 
+>Make sure you do not just merge the changes to main yourself! Ensure everyone has reviewed and approved your code first
+
+If there are any issues with your code, make the appropriate changes and **repeat steps 1-5.**
+
+>[!NOTE]
+>If you have opened a pull request, any commits after that will be shown in that pull request so ensure your pull request is reviewed before you continue working on that branch.
+
 
 
 
