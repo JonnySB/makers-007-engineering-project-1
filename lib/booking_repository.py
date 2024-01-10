@@ -12,7 +12,6 @@ class BookingRepository:
         )
 
         bookings = []
-        # print(rows)
         for row in rows:
             bookings.append(
                 Booking(
@@ -32,11 +31,3 @@ class BookingRepository:
             "WHERE id = %s",
             [booking_id]
         )
-
-# add route for 'details' in spaces page
-# add html page for 'details'
-# add route for 'rent' button that will:
-    # updating the database
-    # updating the 'available' field dynamically from the database
-    # (optional) display a success message (maybe pop-up?)
-    # (optional) gray out the row(s) with the unavailable date(s)
