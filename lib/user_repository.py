@@ -8,7 +8,7 @@ class UserRepository():
     def all(self):
         users = []
         rows = self.connection.execute("SELECT * FROM users")
-        print(rows)
+    
         for row in rows:
             user = User(row['id'], row["username"], row["email"])
             users.append(user)
