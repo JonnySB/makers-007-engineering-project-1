@@ -18,7 +18,7 @@ def test_create_user (db_connection):
     db_connection.seed('seeds/makers_bnb.sql')
     repository = UserRepository(db_connection)
 
-    user = User(None, 'user6', 'user1@user.com')
+    user = User(None, 'user6', 'user6@user.com')
     repository.create(user)
     users = repository.all()
     assert users == [
