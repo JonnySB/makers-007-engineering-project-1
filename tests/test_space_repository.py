@@ -17,3 +17,14 @@ def test_get_all_spaces(db_connection):
         Space(4, 'Space4', 'Example description 4', 130, 4),
         Space(5, 'Space5', 'Example description 5', 130, 1)
     ]
+
+'''
+When i call #find(id)
+I get a specific space by the id
+'''
+def test_get_single_space(db_connection):
+    db_connection.seed('seeds/makers_bnb.sql')
+    repository = SpaceRepository(db_connection)
+
+    space3 = repository.find(3)
+    assert space3 == Space(3, 'Space3', 'Example description 3', 130, 3)
