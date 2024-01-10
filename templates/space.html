@@ -23,12 +23,13 @@
             {% for booking in bookings %}
                 <tr>
                     <td class="t-space-date">{{ booking.date }}</td>
-                    {% if booking.available == False %}
+                    {% if booking.available == True %}
                     <td class="t-space-availability">Available</td>
+                    <td><a href="/spaces/rent/{{booking.id}}/{{space.id}}">Rent</a></td>
                     {% else %}
                     <td class="t-space-availability">Unavailable</td>
+                    <td class="t-space-availability">Rent</td>
                     {% endif %}
-                    <td><a href="/">Rent</a></td>
                 </tr>
             {% endfor %}
         </table>
