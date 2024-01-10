@@ -59,7 +59,6 @@ If you would like to remove the example code:
 
 When in the branch you're working in, and you're happy with all your changes, use the following:
 ```shell
-```shell
 git add .
 git commit -m "Your commit message"
 git push
@@ -164,7 +163,7 @@ For example:
 (makers-007-engineering-project-1) ➜  makers-007-engineering-project-1 git:(story-2-list-spaces) exit
 ```
 
-If there were changes, **repeat step 1**.
+If there were changes, **repeat step 1** and do another pull to check there aren't any changes from main.
 
 ## 5. Push your final changes
 
@@ -184,12 +183,14 @@ git push
 If you've successfully completed **steps 1-5**, and would like your branch to be merged onto the main branch, open up a **pull request** and ask for your team to review it.
 
 >[!CAUTION] 
->Make sure you do not just merge the changes to main yourself! Ensure everyone has reviewed and approved your code first
+>Make sure you do not just merge the changes FROM YOUR BRANCH to MAIN yourself! Ensure everyone has reviewed and approved your code first
 
 If there are any issues with your code, make the appropriate changes and **repeat steps 1-5.**
 
 >[!NOTE]
 >If you have opened a pull request, any commits after that will be shown in that pull request so ensure your pull request is reviewed before you continue working on that branch.
+
+If everything is approved and you merge your branch to the main branch, drop a message in the Slack channel to notify everyone to pull these changes.
 
 
 
