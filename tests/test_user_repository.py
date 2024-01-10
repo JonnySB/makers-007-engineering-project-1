@@ -13,3 +13,19 @@ def test_get_all_users (db_connection):
         User(4, 'user4', 'user4@user.com'),
         User(5, 'user5', 'user5@user.com')
     ]
+
+def test_create_user (db_connection):
+    db_connection.seed('seeds/makers_bnb.sql')
+    repository = UserRepository(db_connection)
+
+    user = User(None, 'user6', 'user6@user.com')
+    repository.create(user)
+    users = repository.all()
+    assert users == [
+        User(1, 'user1', 'user1@user.com'),
+        User(2, 'user2', 'user2@user.com'),
+        User(3, 'user3', 'user3@user.com'),
+        User(4, 'user4', 'user4@user.com'),
+        User(5, 'user5', 'user5@user.com'),
+        User(6, 'user6', 'user6@user.com'),
+    ]
