@@ -4,9 +4,24 @@
         <title>Home</title>
     </head>
     <body>
-        <h1>
-            All Listings
-        </h1>
+        <style>
+            html {
+                padding: 10px;
+            }
+            nav {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+        </style>
+
+        <nav>
+            <h1>
+                All Listings
+            </h1>
+            <a href="/signup">Sign in</a>
+        </nav>
+        
         <table style="width:50%"">
             {% for space in spaces %}
                 <tr>
