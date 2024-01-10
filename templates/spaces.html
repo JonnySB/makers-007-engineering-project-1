@@ -7,11 +7,15 @@
         <h1>
             All Listings
         </h1>
-        {% for space in spaces %}
-            <p class="t-space-name">{{ space.name }}</p>
-            <p class="t-space-description">{{ space.description }}</p>
-            <p class="t-space-price">£{{ space.price }}</p>
-            <a>Details</a>
-        {% endfor %}
+        <table style="width:50%"">
+            {% for space in spaces %}
+                <tr>
+                    <td class="t-space-name">{{ space.name }}</td>
+                    <td class="t-space-description">{{ space.description }}</td>
+                    <td class="t-space-price">£{{ space.price }}</td>
+                    <td><a href="/spaces/{{space.id}}">Details</a></td>
+                </tr>
+            {% endfor %}
+        </table>
     </body>
 </html>
