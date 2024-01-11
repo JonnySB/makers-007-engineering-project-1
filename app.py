@@ -88,82 +88,71 @@ def add_user_to_db():
 
 
 
-from flask import Flask, render_template, redirect, url_for, session
+# from flask import Flask, render_template, redirect, url_for, session
+# # Assume you have a method to get the logged-in user ID from the session
+# def get_logged_in_user_id():
+#     return session.get('user_id')
 
-
-
-# Assume you have a method to get the logged-in user ID from the session
-def get_logged_in_user_id():
-    return session.get('user_id')
-
-@app.route("/booking_requests", methods=["GET"])
-def get_booking_requests():
-    user_id = get_logged_in_user_id()
+# @app.route("/booking_requests", methods=["GET"])
+# def get_booking_requests():
+#     user_id = get_logged_in_user_id()
     
-    if user_id:
-        connection = get_flask_database_connection(app)
-        booking_repo = BookingRepository(connection)
-        booking_requests = booking_repo.get_booking_requests_for_user(user_id)
-        return render_template("booking_requests.html", booking_requests=booking_requests)
-    else:
-        # Redirect to login page if the user is not logged in
-        return redirect(url_for("login"))
+#     if user_id:
+#         connection = get_flask_database_connection(app)
+#         booking_repo = BookingRepository(connection)
+#         booking_requests = booking_repo.get_booking_requests_for_user(user_id)
+#         return render_template("booking_requests.html", booking_requests=booking_requests)
+#     else:
+#         # Redirect to login page if the user is not logged in
+#         return redirect(url_for("login"))
 
-@app.route("/accept_booking/<int:booking_id>", methods=["GET"])
-def accept_booking(booking_id):
-    user_id = get_logged_in_user_id()
+# @app.route("/accept_booking/<int:booking_id>", methods=["GET"])
+# def accept_booking(booking_id):
+#     user_id = get_logged_in_user_id()
     
-    if user_id:
-        connection = get_flask_database_connection(app)
-        booking_repo = BookingRepository(connection)
-        booking_repo.accept_booking_request(booking_id)
-        return redirect(url_for("get_booking_requests"))
-    else:
-        # Redirect to login page if the user is not logged in
-        return redirect(url_for("login"))
+#     if user_id:
+#         connection = get_flask_database_connection(app)
+#         booking_repo = BookingRepository(connection)
+#         booking_repo.accept_booking_request(booking_id)
+#         return redirect(url_for("get_booking_requests"))
+#     else:
+#         # Redirect to login page if the user is not logged in
+#         return redirect(url_for("login"))
 
-@app.route("/deny_booking/<int:booking_id>", methods=["GET"])
-def deny_booking(booking_id):
-    user_id = get_logged_in_user_id()
+# @app.route("/deny_booking/<int:booking_id>", methods=["GET"])
+# def deny_booking(booking_id):
+#     user_id = get_logged_in_user_id()
     
-    if user_id:
-        connection = get_flask_database_connection(app)
-        booking_repo = BookingRepository(connection)
-        booking_repo.deny_booking_request(booking_id)
-        return redirect(url_for("get_booking_requests"))
-    else:
-        # Redirect to login page if the user is not logged in
-        return redirect(url_for("login"))
+#     if user_id:
+#         connection = get_flask_database_connection(app)
+#         booking_repo = BookingRepository(connection)
+#         booking_repo.deny_booking_request(booking_id)
+#         return redirect(url_for("get_booking_requests"))
+#     else:
+#         # Redirect to login page if the user is not logged in
+#         return redirect(url_for("login"))
 
 
+# @app.route("/booking_requests", methods=["GET"])
+# def get_booking_requests():
+#     connection = get_flask_database_connection(app)
+#     booking_repo = BookingRepository(connection)
+#     booking_requests = booking_repo.get_all_booking_requests()
+#     return render_template("booking_requests.html", booking_requests=booking_requests)
 
+# @app.route("/accept_booking/<int:booking_id>", methods=["GET"])
+# def accept_booking(booking_id):
+#     connection = get_flask_database_connection(app)
+#     booking_repo = BookingRepository(connection)
+#     booking_repo.accept_booking_request(booking_id)
+#     return redirect(url_for("get_booking_requests"))
 
-
-
-
-
-
-
-@app.route("/booking_requests", methods=["GET"])
-def get_booking_requests():
-    connection = get_flask_database_connection(app)
-    booking_repo = BookingRepository(connection)
-    booking_requests = booking_repo.get_all_booking_requests()
-    return render_template("booking_requests.html", booking_requests=booking_requests)
-
-@app.route("/accept_booking/<int:booking_id>", methods=["GET"])
-def accept_booking(booking_id):
-    connection = get_flask_database_connection(app)
-    booking_repo = BookingRepository(connection)
-    booking_repo.accept_booking_request(booking_id)
-    return redirect(url_for("get_booking_requests"))
-
-@app.route("/deny_booking/<int:booking_id>", methods=["GET"])
-def deny_booking(booking_id):
-    connection = get_flask_database_connection(app)
-    booking_repo = BookingRepository(connection)
-    booking_repo.deny_booking_request(booking_id)
-    return redirect(url_for("get_booking_requests"))
+# @app.route("/deny_booking/<int:booking_id>", methods=["GET"])
+# def deny_booking(booking_id):
+#     connection = get_flask_database_connection(app)
+#     booking_repo = BookingRepository(connection)
+#     booking_repo.deny_booking_request(booking_id)
+#     return redirect(url_for("get_booking_requests"))
 
 
 

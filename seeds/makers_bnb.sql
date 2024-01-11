@@ -89,6 +89,6 @@ INSERT INTO bookings (date, available, space_id) VALUES ('2024-05-10', 'TRUE', 4
 INSERT INTO bookings (date, available, space_id) VALUES ('2024-05-11', 'TRUE', 4);
 INSERT INTO bookings (date, available, space_id) VALUES ('2024-05-12', 'TRUE', 4);
 
-INSERT INTO booking_requests (guest_id, pending, accepted, booking_id) VALUES (1, 1, True, False, 1);
-INSERT INTO booking_requests (guest_id, pending, accepted, booking_id) VALUES (2, 1, True, False, 1);
-INSERT INTO booking_requests (guest_id, pending, accepted, booking_id) VALUES (3, 1, True, False, 1);
+INSERT INTO booking_requests (guest_id, pending, accepted, booking_id) VALUES (1, 1, 'TRUE', 'FALSE', 1);
+INSERT INTO booking_requests (guest_id, pending, accepted, booking_id) VALUES (2, 1, 'TRUE', 'FALSE', 1);
+INSERT INTO booking_requests (guest_id, pending, accepted, booking_id) VALUES (3, 1, 'TRUE', 'FALSE', 1);
