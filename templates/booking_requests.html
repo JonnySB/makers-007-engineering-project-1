@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking Requests</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 20px;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        header {
+            background-color: #007BFF;
+            padding: 15px;
+            text-align: center;
+            color: white;
+            font-size: 24px;
+        }
+
+        main {
+            max-width: 800px;
+            margin: 20px auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .action-buttons button {
+            margin-right: 10px;
+            cursor: pointer;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 4px;
+            font-size: 14px;
+            transition: background-color 0.3s;
+        }
+
+        .accept-button {
+            background-color: #28a745;
+            color: white;
+        }
+
+        .deny-button {
+            background-color: #dc3545;
+            color: white;
+        }
+
+        footer {
+            margin-top: 20px;
+            text-align: center;
+            color: #777;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        Booking Requests
+    </header>
+
+    <main>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Date</th>
+                    <th>Availability</th>
+                    <th>Space ID</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Use your template engine to iterate over booking requests and fill in the data -->
+                <tr>
+                    <td>1</td>
+                    <td>2024-05-10</td>
+                    <td>True</td>
+                    <td>1</td>
+                    <td class="action-buttons">
+                        <button class="accept-button" onclick="acceptBooking(1)">Accept</button>
+                        <button class="deny-button" onclick="denyBooking(1)">Deny</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>2024-05-11</td>
+                    <td>False</td>
+                    <td>1</td>
+                    <td class="action-buttons">
+                        <button class="accept-button" onclick="acceptBooking(2)">Accept</button>
+                        <button class="deny-button" onclick="denyBooking(2)">Deny</button>
+                    </td>
+                </tr>
+                <!-- Add more rows as needed -->
+            </tbody>
+        </table>
+    </main>
+
+    <footer>
+        <a href="/">Go to Home Page</a>
+    </footer>
+
+    <script>
+        function acceptBooking(bookingId) {
+            // Add logic to handle accepting the booking request with the specified ID
+            console.log("Accepting booking request with ID: " + bookingId);
+        }
+
+        function denyBooking(bookingId) {
+            // Add logic to handle denying the booking request with the specified ID
+            console.log("Denying booking request with ID: " + bookingId);
+        }
+    </script>
+
+</body>
+
+</html>
