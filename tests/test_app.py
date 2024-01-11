@@ -1,6 +1,7 @@
 from playwright.sync_api import Page, expect
 from lib.user_repository import UserRepository
 from lib.user import User
+import pytest
 
 """
 When I call GET /spaces
@@ -54,10 +55,11 @@ When we create a new space
 We see it in the /spaces index
 And can see the dates listed on the details page
 """
+#@pytest.mark.skip()
 def test_create_space(page, test_web_address, db_connection):
     db_connection.seed("seeds/makers_bnb.sql")
-    page.goto(f"http://{test_web_address}/spaces")
-    page.click("text=List a space")
+    page.goto(f"http://{test_web_address}/spaces/new")
+    #page.click("text=List a space")
     page.fill("input[name='name']", "Test Name")
     page.fill("input[name='description']", "Test Description")
     page.fill("input[name='price']", "100")

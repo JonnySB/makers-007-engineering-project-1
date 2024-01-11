@@ -6,7 +6,7 @@ CREATE TABLE users (
     id SERIAL PRIMARY KEY,
     username text NOT NULL UNIQUE,
     email text NOT NULL UNIQUE,
-    hashed_password text NOT NULL
+    hashed_password BYTEA NOT NULL
 );
 
 ----------------

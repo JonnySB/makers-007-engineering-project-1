@@ -1,5 +1,5 @@
 import os
-from flask import Flask, request, render_template, redirect
+from flask import Flask, request, render_template, redirect, session
 from lib.database_connection import get_flask_database_connection
 from lib.space_repository import *
 from lib.space import *
@@ -10,25 +10,41 @@ from lib.booking import Booking
 from datetime import datetime, timedelta
 
 # Create a new Flask app
+import secrets
 app = Flask(__name__)
+app.secret_key = secrets.token_hex(16)
 
 # == Your Routes Here ==
 
 
 @app.route("/")
 def set_default_route():
+    return redirect("/spaces")
+
+@app.route("/reseed")
+def reseed_database():
     connection = get_flask_database_connection(app)
     connection.connect()
     connection.seed("seeds/makers_bnb.sql")
     return redirect("/spaces")
 
-
+# 'Homepage'
 @app.route("/spaces", methods=["GET"])
 def get_spaces():
     connection = get_flask_database_connection(app)
     space_repo = SpaceRepository(connection)
+
     spaces = space_repo.all()
-    return render_template("spaces/spaces.html", spaces=spaces)
+
+    user_repo = UserRepository(connection)
+    logged_in = session.get('logged_in', False)
+    user_id = session.get('user_id', None)
+    user_details = None
+    if user_id != None:
+        user_details = user_repo.get_user_details(user_id)
+
+    return render_template("spaces/spaces.html", spaces=spaces, logged_in=logged_in, user=user_details)
+
 
 @app.route("/spaces/new", methods=['GET'])
 def get_new_space():
@@ -112,10 +128,17 @@ def login_user():
     username = request.form["user"]
     password = request.form["password"]
 
-    if user_repository.login_user(username, password):
-        pass
+    # Check if user is in db and password matches
+    user_id = user_repository.verify_user_login(username, password)
 
-    return render_template("login.html", errors="Incorrect login details")
+    # If the user can't be found:
+    if not user_id:
+        return render_template("login.html", errors="Incorrect login details")
+    
+    session['user_id'] = user_id
+    session['logged_in'] = True
+
+    return redirect("/spaces")
 
 
 # These lines start the server if you run this file directly

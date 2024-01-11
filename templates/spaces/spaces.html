@@ -19,8 +19,12 @@
             <h1>
                 All Listings
             </h1>
+            {% if not logged_in %}
             <a href="/signup">Sign Up</a>
             <a href="/login">Login</a>
+            {% else %}
+            <a href="">{{ user.username }}</a>
+            {% endif %}
         </nav>
         
         <table style="width:50%"">
@@ -34,8 +38,11 @@
             {% endfor %}
         </table>
 
+        {% if logged_in %}
         <p>
             <a href="/spaces/new">List a space</a>
         </p>
+        {% endif %}
+
     </body>
 </html>
