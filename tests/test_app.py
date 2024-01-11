@@ -37,7 +37,7 @@ def test_create_user(page, test_web_address, db_connection):
     page.fill("input[name=username]", "user6")
     page.fill("input[name=email]", "user6@user.com")
 
-    page.click("text='submit'")
+    page.click("text='Sign Up'")
 
     repository = UserRepository(db_connection)
 
