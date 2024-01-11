@@ -65,7 +65,7 @@ def test_create_space(page, test_web_address, db_connection):
     page.fill("input[name='price']", "100")
     page.fill("input[name='available_from']", "2024-03-26")
     page.fill("input[name='available_to']", "2024-03-29")
-    page.click("text=List my space")
+    page.click("button[type='submit']")
     name_element = page.locator(".t-space-name")
     expect(name_element).to_have_text(["Space1", "Space2", "Space3", "Space4", "Space5", "Test Name"])
     description_element = page.locator(".t-space-description")
