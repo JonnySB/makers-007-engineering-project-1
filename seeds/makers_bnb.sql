@@ -50,9 +50,9 @@ CREATE SEQUENCE IF NOT EXISTS booking_requests_id_seq;
 CREATE TABLE booking_requests (
     id SERIAL PRIMARY KEY,
     guest_id int,
-    constraint fk_user foreign key(user_id)
+    constraint fk_user foreign key(guest_id)
         references users(id)
-        on delete cascade  
+        on delete cascade,  
     pending boolean,
     accepted boolean,
     booking_id int,
@@ -89,6 +89,6 @@ INSERT INTO bookings (date, available, space_id) VALUES ('2024-05-10', 'TRUE', 4
 INSERT INTO bookings (date, available, space_id) VALUES ('2024-05-11', 'TRUE', 4);
 INSERT INTO bookings (date, available, space_id) VALUES ('2024-05-12', 'TRUE', 4);
 
-INSERT INTO booking_requests (guest_id, pending, accepted, booking_id) VALUES (1, 1, 'TRUE', 'FALSE', 1);
-INSERT INTO booking_requests (guest_id, pending, accepted, booking_id) VALUES (2, 1, 'TRUE', 'FALSE', 1);
-INSERT INTO booking_requests (guest_id, pending, accepted, booking_id) VALUES (3, 1, 'TRUE', 'FALSE', 1);
+INSERT INTO booking_requests (guest_id, pending, accepted, booking_id) VALUES (1, 'TRUE', 'FALSE', 1);
+INSERT INTO booking_requests (guest_id, pending, accepted, booking_id) VALUES (1, 'TRUE', 'FALSE', 1);
+INSERT INTO booking_requests (guest_id, pending, accepted, booking_id) VALUES (1, 'TRUE', 'FALSE', 1);
