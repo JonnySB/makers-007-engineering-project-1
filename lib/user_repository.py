@@ -21,3 +21,6 @@ class UserRepository:
             "INSERT INTO users (username, email, hashed_password) VALUES (%s, %s, %s)",
             [user.username, user.email, user.hashed_password],
         )
+
+    def login_user(self, username, password):
+        return False
