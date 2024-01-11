@@ -36,6 +36,8 @@ def test_create_user(page, test_web_address, db_connection):
 
     page.fill("input[name=username]", "user6")
     page.fill("input[name=email]", "user6@user.com")
+    page.fill("input[name=password]", "Password")
+    page.fill("input[name=confirm_password]", "Password")
 
     page.click("text='Sign Up'")
 
