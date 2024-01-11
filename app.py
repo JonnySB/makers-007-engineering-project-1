@@ -6,6 +6,8 @@ from lib.space import *
 from lib.user_repository import UserRepository
 from lib.user import User
 from lib.booking_repository import BookingRepository
+from lib.booking import Booking
+from datetime import datetime, timedelta
 
 # Create a new Flask app
 app = Flask(__name__)
@@ -28,11 +30,25 @@ def get_new_space():
 def create_space():
     connection = get_flask_database_connection(app)
     space_repository = SpaceRepository(connection)
+    booking_repository = BookingRepository(connection)
+
     name = request.form['name']
     description = request.form['description']
     price = request.form['price']
+    available_from = request.form['available_from']
+    available_to = request.form['available_to']
+
     space = Space(None, name, description, price, None)
     space = space_repository.create(space)
+
+    available_from = datetime.strptime(available_from, '%Y-%m-%d')
+    available_to = datetime.strptime(available_to, '%Y-%m-%d')
+    current_date = available_from
+    while current_date <= available_to:
+        booking = Booking(None, current_date, True, space.id)
+        booking = booking_repository.create(booking)
+        current_date += timedelta(days=1)
+
     return redirect(f"/spaces")
 
 @app.route("/spaces/<id>", methods=['GET'])

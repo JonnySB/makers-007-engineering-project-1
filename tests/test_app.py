@@ -37,7 +37,8 @@ def test_create_space(page, test_web_address, db_connection):
     page.fill("input[name='name']", "Test Name")
     page.fill("input[name='description']", "Test Description")
     page.fill("input[name='price']", "100")
-    # When log in functionality is developed, must include test for correct user_id
+    page.fill("input[name='available_from']", "2024-03-26")
+    page.fill("input[name='available_to']", "2024-03-29")
     page.click("text=List my space")
     name_element = page.locator(".t-space-name")
     expect(name_element).to_have_text(["Space1", "Space2", "Space3", "Space4", "Space5", "Test Name"])
@@ -50,6 +51,11 @@ def test_create_space(page, test_web_address, db_connection):
                                             "Test Description"])
     price_element = page.locator(".t-space-price")
     expect(price_element).to_have_text(["£130.0" for _ in range(5)] + ["£100.0"])
+    page.click("a[href='/spaces/6']")
+    date_element = page.locator(".t-space-date")
+    expect(date_element).to_have_text(["2024-03-26", "2024-03-27", "2024-03-28", "2024-03-29"])
+
+
 
 """
 When we create a user
@@ -62,7 +68,7 @@ def test_create_user(page, test_web_address, db_connection):
     page.fill("input[name=username]", "user6")
     page.fill("input[name=email]", "user6@user.com")
 
-    page.click("text='submit'")
+    page.click("text='Sign Up'")
 
     repository = UserRepository(db_connection)
 

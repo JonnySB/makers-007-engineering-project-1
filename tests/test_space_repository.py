@@ -31,10 +31,10 @@ def test_get_single_space(db_connection):
 
 """
 When I call #create
-I create a space in the database
+I create a space in the spaces table
 and can see it back in #all
 """
-def test_create(db_connection):
+def test_create_space(db_connection):
     db_connection.seed("seeds/makers_bnb.sql")
     repository = SpaceRepository(db_connection)
     space = Space(None, 'Test Name', 'Test Description', 50.5, 5)
