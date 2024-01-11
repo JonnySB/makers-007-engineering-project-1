@@ -31,3 +31,12 @@ class BookingRepository:
             "WHERE id = %s",
             [booking_id]
         )
+
+    def create(self, booking):
+        rows = self._connection.execute(
+            'INSERT INTO bookings (date, available, space_id) VALUES (%s, %s, %s) RETURNING id', 
+            [booking.date, booking.available, booking.space_id]
+        )
+        row = rows[0]
+        booking.id = row["id"]
+        return booking
