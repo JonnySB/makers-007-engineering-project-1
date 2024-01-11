@@ -16,8 +16,8 @@ class BookingRequest:
 
 
 
-# 1. Method to get booking requests for a specific user
-# 2. Creation of HTML template for booking requests and add routes
+# 1. Method to get booking requests for a specific user => get_booking_requests_for_user, done
+# 2. Creation of HTML template for booking requests and add routes => check template and add routes
 # 3. Create route for html template
 # 4. Testing Pytest for booking request method
 

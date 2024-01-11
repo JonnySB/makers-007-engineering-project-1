@@ -85,7 +85,9 @@ def add_user_to_db():
     return redirect(f"/spaces")
 
 
-
+@app.route("/manage_bookings", methods=["GET"])
+def get_booking_requests():
+    return render_template("booking_requests.html")
 
 
 # from flask import Flask, render_template, redirect, url_for, session
