@@ -1,4 +1,5 @@
 from lib.booking import Booking
+from lib.booking_request import BookingRequest
 
 
 class BookingRepository:
@@ -7,89 +8,51 @@ class BookingRepository:
 
 
     # 1. Method to get booking requests for a specific user
-    
-    def get_booking_requests_for_user(self, user_id):
-
-
-
-
-
-    def get_by_id(self, space_id):
-        rows = self._connection.execute(
-            "SELECT * FROM bookings WHERE space_id = %s ORDER BY id",
-            [space_id],
-        )
-
-        bookings = []
-        for row in rows:
-            bookings.append(
-                Booking(
-                    row["id"],
-                    row["date"],
-                    row["available"],
-                    row["space_id"],
-                )
-            )
-
-        return bookings
-    
-    def update_availability(self, booking_id):
-        self._connection.execute(
-            "UPDATE bookings "
-            "SET available = FALSE "
-            "WHERE id = %s",
-            [booking_id]
-        )
-
-
-    
-
-
-   
-
-
     def get_booking_requests_for_user(self, user_id):
         rows = self._connection.execute(
-            "SELECT * FROM bookings "
-            "JOIN spaces ON bookings.space_id = spaces.id "
-            "WHERE spaces.user_id = %s "
-            "AND available = TRUE "
-            "ORDER BY bookings.id",
+            "SELECT * FROM booking_requests WHERE user_id = %s ORDER BY id",
             [user_id],
         )
-
         booking_requests = []
         for row in rows:
             booking_requests.append(
-                Booking(
+                BookingRequest(
                     row["id"],
-                    row["date"],
-                    row["available"],
-                    row["space_id"],
+                    row["guest_id"],
+                    row["pending"],
+                    row["accepted"],
+                    row["booking_id"],
                 )
             )
-
         return booking_requests
+    
+    # def update_availability(self, booking_id):
+    #     self._connection.execute(
+    #         "UPDATE bookings "
+    #         "SET available = FALSE "
+    #         "WHERE id = %s",
+    #         [booking_id]
+    #     )
 
-    def accept_booking_request(self, booking_id):
-        self._connection.execute(
-            "UPDATE bookings "
-            "SET available = FALSE "
-            "WHERE id = %s",
-            [booking_id]
-        )
+#     def accept_booking_request(self, booking_id):
+#         self._connection.execute(
+#             "UPDATE bookings "
+#             "SET available = FALSE "
+#             "WHERE id = %s",
+#             [booking_id]
+#         )
 
-    def deny_booking_request(self, booking_id):
-        self._connection.execute(
-            "DELETE FROM bookings "
-            "WHERE id = %s",
-            [booking_id]
-        )
+#     def deny_booking_request(self, booking_id):
+#         self._connection.execute(
+#             "DELETE FROM bookings "
+#             "WHERE id = %s",
+#             [booking_id]
+#         )
 
-# Assume you have a method to get the logged-in user ID from the session
-def get_logged_in_user_id():
-    # Implement this method based on your session management
-    return session.get('user_id')
+# # Assume you have a method to get the logged-in user ID from the session
+# def get_logged_in_user_id():
+#     # Implement this method based on your session management
+#     return session.get('user_id')
 
 
 

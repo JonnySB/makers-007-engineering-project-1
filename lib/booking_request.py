@@ -23,6 +23,7 @@ class BookingRequest:
 
 # 5. Method to accept/deny a booking request (accept_booking_request, deny_booking_request)
 # 6. Add logic to accept/deny booking request
-# 7. Testing (pytest) for accept and deny logic
+# 7. Add switch between pending / accepted / declined 
+# 8. Testing (pytest) for accept and deny logic
 
-# 8. Adding booking request to the database (change sql file)
+# 9. Adding booking_requests to the database (change sql file)
