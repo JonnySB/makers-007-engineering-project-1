@@ -1,9 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Home</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     </head>
     <body>
+
+        <div class="container">
+            <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
+            <div class="col-md-3 mb-2 mb-md-0">
+                <img src="{{ url_for('static', filename='makersbnb_logo.svg') }}" width="100" height="40"/>
+            </div>
+
+            <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+                <li><a href="#" class="nav-link px-2 link-secondary">Spaces</a></li>
+                <li><a href="#" class="nav-link px-2">Requests</a></li>
+            </ul>
+
+            <div class="col-md-3 text-end">
+                <button type="button" class="btn btn-outline-primary me-2">Login</button>
+                <a href="/signup"><button type="button" class="btn btn-primary">Sign-up</button></a>
+            </div>
+            </header>
+        </div>
+
+        <div class="px-4 py-5 my-5 text-center">
+            <h1 class="display-5 fw-bold text-body-emphasis">Book a Space</h1>
+            <div class="col-lg-6 mx-auto">
+                <p class="lead mb-4">Book from any one of the beautiful spaces listed below. Or feel free to list your own space for others to rent.</p>
+                <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+                    <a href="/spaces/new"><button type="button" class="btn btn-primary btn-lg px-4 gap-3">List a space</button></a>
+                </div>
+            </div>
+        </div>
+        <div class="b-example-divider"></div>
         <style>
             html {
                 padding: 10px;
@@ -14,14 +46,6 @@
                 align-items: center;
             }
         </style>
-
-        <nav>
-            <h1>
-                All Listings
-            </h1>
-            <a href="/signup">Sign Up</a>
-        </nav>
-        
         <table style="width:50%"">
             {% for space in spaces %}
                 <tr>
@@ -33,8 +57,6 @@
             {% endfor %}
         </table>
 
-        <p>
-            <a href="/spaces/new">List a space</a>
-        </p>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     </body>
 </html>
