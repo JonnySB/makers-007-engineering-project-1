@@ -43,10 +43,10 @@ def test_create_user(page, test_web_address, db_connection):
 
     users = repository.all()
     assert users == [
-        User(1, "user1", "user1@user.com"),
-        User(2, "user2", "user2@user.com"),
-        User(3, "user3", "user3@user.com"),
-        User(4, "user4", "user4@user.com"),
-        User(5, "user5", "user5@user.com"),
-        User(6, "user6", "user6@user.com"),
+        User(1, "user1", "user1@user.com", "Password"),
+        User(2, "user2", "user2@user.com", "Password"),
+        User(3, "user3", "user3@user.com", "Password"),
+        User(4, "user4", "user4@user.com", "Password"),
+        User(5, "user5", "user5@user.com", "Password"),
+        User(6, "user6", "user6@user.com", "Password"),
     ]

@@ -12,6 +12,12 @@ app = Flask(__name__)
 
 # == Your Routes Here ==
 
+@app.route("/")
+def set_default_route():
+    connection = get_flask_database_connection(app)
+    connection.connect()
+    connection.seed("seeds/makers_bnb.sql")
+    return redirect("/spaces")
 
 @app.route("/spaces", methods=["GET"])
 def get_spaces():
@@ -47,8 +53,10 @@ def add_user_to_db():
 
     username = request.form["username"]
     email = request.form["email"]
+    password = request.form["password"]
+    #confirm_password
 
-    user = User(None, username, email)
+    user = User(None, username, email, password)
 
     user = user_repository.create(user)
     return redirect(f"/spaces")
