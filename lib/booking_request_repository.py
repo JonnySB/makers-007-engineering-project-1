@@ -2,15 +2,22 @@ from lib.booking import Booking
 from lib.booking_request import BookingRequest
 
 
-class BookingRepository:
+class BookingRequestRepository:
     def __init__(self, connection):
         self._connection = connection
 
+    def create_booking_request(self, booking_request):
+        self._connection.execute(
+            'INSERT INTO booking_requests (guest_id, pending, accepted, booking_id) VALUES (%s, %s, %s, %s)', 
+            [booking_request.guest_id, booking_request.pending, booking_request.accepted, booking_request.booking_id],
+        )
+        # row = rows[0]
+        # booking_request.id = row["id"]
+        return booking_request
 
-    # 1. Method to get booking requests for a specific user
     def get_booking_requests_for_user(self, user_id):
         rows = self._connection.execute(
-            "SELECT * FROM booking_requests WHERE user_id = %s ORDER BY id",
+            "SELECT * FROM booking_requests WHERE guest_id = %s ORDER BY id",
             [user_id],
         )
         booking_requests = []
@@ -25,22 +32,20 @@ class BookingRepository:
                 )
             )
         return booking_requests
-    
-    # def update_availability(self, booking_id):
-    #     self._connection.execute(
-    #         "UPDATE bookings "
-    #         "SET available = FALSE "
-    #         "WHERE id = %s",
-    #         [booking_id]
-    #     )
 
-#     def accept_booking_request(self, booking_id):
-#         self._connection.execute(
-#             "UPDATE bookings "
-#             "SET available = FALSE "
-#             "WHERE id = %s",
-#             [booking_id]
-#         )
+    def accept_booking_request(self, booking_requests_id):
+        self._connection.execute(
+            "UPDATE booking_requests "
+            "SET pending = FALSE "
+            "WHERE id = %s",
+            [booking_requests_id]
+        )
+        self._connection.execute(
+            "UPDATE booking_requests "
+            "SET accepted = TRUE "
+            "WHERE id = %s",
+            [booking_requests_id]
+        )
 
 #     def deny_booking_request(self, booking_id):
 #         self._connection.execute(

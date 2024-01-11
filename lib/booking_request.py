@@ -1,5 +1,5 @@
 class BookingRequest:
-    def __init__(self, id, guest_id, pending, accepted, booking_id):
+    def __init__(self, id, guest_id, pending=True, accepted=False, booking_id=None):
         self.id = id
         self.guest_id = guest_id
         self.pending = pending
@@ -27,3 +27,5 @@ class BookingRequest:
 # 8. Testing (pytest) for accept and deny logic
 
 # 9. Adding booking_requests to the database (change sql file)
+    
+# extra: add create_booking_request method

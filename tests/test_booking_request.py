@@ -6,7 +6,7 @@ Initialises with given attributes
 """
 
 def test_booking_request_initialises_with_given_attributes():
-    booking_request = BookingRequest(99, 1, True, True, 1)
+    booking_request = BookingRequest(99, 1, True, False, 1)
     assert booking_request.id == 99
     assert booking_request.guest_id == 1
     assert booking_request.pending == True
@@ -14,12 +14,12 @@ def test_booking_request_initialises_with_given_attributes():
     assert booking_request.booking_id == 1
 
 
-# def test_booking_eq():
-#     date1 = BookingRequest(1, date(2023, 12, 5), True, 1)
-#     date2 = BookingRequest(1, date(2023, 12, 5), True, 1)
-#     assert date1 == date2
+def test_booking_request_eq():
+    booking_request1 = BookingRequest(99, 1, True, False, 1)
+    booking_request2 = BookingRequest(99, 1, True, False, 1)
+    assert booking_request1 == booking_request2
 
 
-# def test_booking_repr():
-#     date1 = BookingRequest(1, date(2023, 12, 5), True, 1)
-#     assert str(date1) == "BookingRequest(1, 2023-12-05, True, 1)"
+def test_booking_request_repr():
+    booking_request = BookingRequest(99, 1, True, False, 1)
+    assert str(booking_request) == "BookingRequest(99, 1, True, False, 1)"
