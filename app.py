@@ -38,7 +38,7 @@ def create_space():
     available_from = request.form['available_from']
     available_to = request.form['available_to']
 
-    space = Space(None, name, description, price, None)
+    space = Space(None, name, description, price, None) # needs to include user_id once login functionality added
     space = space_repository.create(space)
 
     available_from = datetime.strptime(available_from, '%Y-%m-%d')
