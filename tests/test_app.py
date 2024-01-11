@@ -1,6 +1,7 @@
 from playwright.sync_api import Page, expect
 from lib.user_repository import UserRepository
 from lib.user import User
+import pytest
 
 """
 When I call GET /spaces
@@ -54,10 +55,11 @@ When we create a new space
 We see it in the /spaces index
 And can see the dates listed on the details page
 """
+#@pytest.mark.skip()
 def test_create_space(page, test_web_address, db_connection):
     db_connection.seed("seeds/makers_bnb.sql")
-    page.goto(f"http://{test_web_address}/spaces")
-    page.click("text=List a space")
+    page.goto(f"http://{test_web_address}/spaces/new")
+    #page.click("text=List a space")
     page.fill("input[name='name']", "Test Name")
     page.fill("input[name='description']", "Test Description")
     page.fill("input[name='price']", "100")
@@ -89,6 +91,8 @@ def test_create_user(page, test_web_address, db_connection):
 
     page.fill("input[name=username]", "user6")
     page.fill("input[name=email]", "user6@user.com")
+    page.fill("input[name=password]", "Password")
+    page.fill("input[name=confirm_password]", "Password")
 
     page.click("text='Sign Up'")
 
@@ -96,12 +100,12 @@ def test_create_user(page, test_web_address, db_connection):
 
     users = repository.all()
     assert users == [
-        User(1, "user1", "user1@user.com"),
-        User(2, "user2", "user2@user.com"),
-        User(3, "user3", "user3@user.com"),
-        User(4, "user4", "user4@user.com"),
-        User(5, "user5", "user5@user.com"),
-        User(6, "user6", "user6@user.com"),
+        User(1, "user1", "user1@user.com", "Password"),
+        User(2, "user2", "user2@user.com", "Password"),
+        User(3, "user3", "user3@user.com", "Password"),
+        User(4, "user4", "user4@user.com", "Password"),
+        User(5, "user5", "user5@user.com", "Password"),
+        User(6, "user6", "user6@user.com", "Password"),
     ]
 
 

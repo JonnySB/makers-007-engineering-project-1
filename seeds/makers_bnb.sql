@@ -4,8 +4,9 @@ DROP SEQUENCE IF EXISTS users_id_seq;
 CREATE SEQUENCE IF NOT EXISTS users_id_seq;
 CREATE TABLE users (
     id SERIAL PRIMARY KEY,
-    username text,
-    email text
+    username text NOT NULL UNIQUE,
+    email text NOT NULL UNIQUE,
+    hashed_password BYTEA NOT NULL
 );
 
 ----------------
@@ -41,11 +42,11 @@ CREATE TABLE bookings (
         on delete cascade  
 );
 
-INSERT INTO users (username, email) VALUES ('user1', 'user1@user.com');
-INSERT INTO users (username, email) VALUES ('user2', 'user2@user.com');
-INSERT INTO users (username, email) VALUES ('user3', 'user3@user.com');
-INSERT INTO users (username, email) VALUES ('user4', 'user4@user.com');
-INSERT INTO users (username, email) VALUES ('user5', 'user5@user.com');
+INSERT INTO users (username, email, hashed_password) VALUES ('user1', 'user1@user.com', 'Password');
+INSERT INTO users (username, email, hashed_password) VALUES ('user2', 'user2@user.com', 'Password');
+INSERT INTO users (username, email, hashed_password) VALUES ('user3', 'user3@user.com', 'Password');
+INSERT INTO users (username, email, hashed_password) VALUES ('user4', 'user4@user.com', 'Password');
+INSERT INTO users (username, email, hashed_password) VALUES ('user5', 'user5@user.com', 'Password');
 
 INSERT INTO spaces (name, description, price, user_id) VALUES ('Space1', 'Example description 1', 130, 1);
 INSERT INTO spaces (name, description, price, user_id) VALUES ('Space2', 'Example description 2', 130, 2);
