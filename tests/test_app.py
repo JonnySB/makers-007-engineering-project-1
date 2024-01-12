@@ -25,7 +25,7 @@ def test_get_spaces(page, test_web_address, db_connection):
         ]
     )
     price_element = page.locator(".t-space-price")
-    expect(price_element).to_have_text(["£130.0" for _ in range(5)])
+    expect(price_element).to_have_text(["£130.0/ night" for _ in range(5)])
 
 """
 When we click on space 3's details
@@ -65,7 +65,7 @@ def test_create_space(page, test_web_address, db_connection):
     page.fill("input[name='price']", "100")
     page.fill("input[name='available_from']", "2024-03-26")
     page.fill("input[name='available_to']", "2024-03-29")
-    page.click("text=List my space")
+    page.click("button[type='submit']")
     name_element = page.locator(".t-space-name")
     expect(name_element).to_have_text(["Space1", "Space2", "Space3", "Space4", "Space5", "Test Name"])
     description_element = page.locator(".t-space-description")
@@ -76,7 +76,7 @@ def test_create_space(page, test_web_address, db_connection):
                                             "Example description 5",
                                             "Test Description"])
     price_element = page.locator(".t-space-price")
-    expect(price_element).to_have_text(["£130.0" for _ in range(5)] + ["£100.0"])
+    expect(price_element).to_have_text(["£130.0/ night" for _ in range(5)] + ["£100.0/ night"])
     page.click("a[href='/spaces/6']")
     date_element = page.locator(".t-space-date")
     expect(date_element).to_have_text(["2024-03-26", "2024-03-27", "2024-03-28", "2024-03-29"])

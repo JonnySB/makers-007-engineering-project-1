@@ -140,6 +140,11 @@ def login_user():
 
     return redirect("/spaces")
 
+@app.route("/logout", methods=["GET"])
+def logout_user():
+    session['user_id'] = None
+    session['logged_in'] = False
+    return redirect(f"/spaces")
 
 @app.route("/manage_bookings", methods=["GET"])
 def get_booking_requests():
