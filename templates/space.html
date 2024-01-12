@@ -84,6 +84,19 @@
             <div class="list-group">
                 {% for booking in bookings %}
                 {% if booking.available == True %}
+                {% if not logged_in %}
+                <a href="/signup" class="list-group-item list-group-item-action d-flex gap-3 py-3" aria-current="true">
+                    <div class="d-flex gap-2 w-100 justify-content-between">
+                        <div>
+                            <h6 class="mb-0 t-space-date">{{ booking.date }}</h6>
+                            <p class="mb-0 opacity-75 t-space-availability">
+                                Available
+                            </p>
+                        </div>
+                        <small class="opacity-50 text-nowrap">Click to Rent</small>
+                    </div>
+                </a>
+                {% else %}
                 <a href="/spaces/rent/{{booking.id}}/{{space.id}}"
                     class="list-group-item list-group-item-action d-flex gap-3 py-3" aria-current="true">
                     <div class="d-flex gap-2 w-100 justify-content-between">
@@ -96,9 +109,10 @@
                         <small class="opacity-50 text-nowrap">Click to Rent</small>
                     </div>
                 </a>
+                {% endif %}
                 {% else %}
-                <a href="#" class="list-group-item d-flex gap-3 py-3 list-group-item-dark" data-bs-toggle="modal"
-                    data-bs-target="#exampleModal" aria-current="true">
+                <a href="/manage_bookings" class="list-group-item d-flex gap-3 py-3 list-group-item-dark"
+                    data-bs-toggle="modal" data-bs-target="#exampleModal" aria-current="true">
                     <div class="d-flex gap-2 w-100 justify-content-between">
                         <div>
                             <h6 class="mb-0 t-space-date">{{ booking.date }}</h6>
