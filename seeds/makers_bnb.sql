@@ -42,11 +42,11 @@ CREATE TABLE bookings (
         on delete cascade  
 );
 
-INSERT INTO users (username, email, hashed_password) VALUES ('user1', 'user1@user.com', 'Password');
-INSERT INTO users (username, email, hashed_password) VALUES ('user2', 'user2@user.com', 'Password');
-INSERT INTO users (username, email, hashed_password) VALUES ('user3', 'user3@user.com', 'Password');
-INSERT INTO users (username, email, hashed_password) VALUES ('user4', 'user4@user.com', 'Password');
-INSERT INTO users (username, email, hashed_password) VALUES ('user5', 'user5@user.com', 'Password');
+INSERT INTO users (username, email, hashed_password) VALUES ('user1', 'user1@user.com', '\x243262243132247869754d4f49332f43434a713167786d78505152567538782f5269726d4a32303450424d6a53766f7464744a4476436641616e3761');
+INSERT INTO users (username, email, hashed_password) VALUES ('user2', 'user2@user.com', '\x243262243132247869754d4f49332f43434a713167786d78505152567538782f5269726d4a32303450424d6a53766f7464744a4476436641616e3761');
+INSERT INTO users (username, email, hashed_password) VALUES ('user3', 'user3@user.com', '\x243262243132247869754d4f49332f43434a713167786d78505152567538782f5269726d4a32303450424d6a53766f7464744a4476436641616e3761');
+INSERT INTO users (username, email, hashed_password) VALUES ('user4', 'user4@user.com', '\x243262243132247869754d4f49332f43434a713167786d78505152567538782f5269726d4a32303450424d6a53766f7464744a4476436641616e3761');
+INSERT INTO users (username, email, hashed_password) VALUES ('user5', 'user5@user.com', '\x243262243132247869754d4f49332f43434a713167786d78505152567538782f5269726d4a32303450424d6a53766f7464744a4476436641616e3761');
 
 INSERT INTO spaces (name, description, price, user_id) VALUES ('Space1', 'Example description 1', 130, 1);
 INSERT INTO spaces (name, description, price, user_id) VALUES ('Space2', 'Example description 2', 130, 2);
