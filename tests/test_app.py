@@ -14,16 +14,22 @@ def test_get_spaces(page, test_web_address, db_connection):
     page.goto(f"http://{test_web_address}/spaces")
     name_element = page.locator(".t-space-name")
     expect(name_element).to_have_text(
-        ["Space1", "Space2", "Space3", "Space4", "Space5"]
+        [
+            "Enchanted Retreat",
+            "Urban Oasis Loft",
+            "Sunset Serenity Cottage",
+            "Luxury Skyline Penthouse",
+            "Seaside Bliss Villa",
+        ]
     )
     description_element = page.locator(".t-space-description")
     expect(description_element).to_have_text(
         [
-            "Example description 1",
-            "Example description 2",
-            "Example description 3",
-            "Example description 4",
-            "Example description 5",
+            "Discover the magic of this hidden gem. A cozy haven surrounded by nature, perfect for a peaceful escape.",
+            "Experience city living at its finest. Our modern loft offers stunning views and all the amenities you need for a stylish stay.",
+            "Unwind in our charming cottage with breathtaking sunset views. A tranquil setting for a memorable getaway.",
+            "Indulge in luxury high above the city. Our penthouse boasts panoramic skyline views and top-notch amenities.",
+            "Escape to paradise in our seaside villa. Relax to the sound of waves and enjoy the ultimate beachfront experience.",
         ]
     )
     price_element = page.locator(".t-space-price")
@@ -41,9 +47,11 @@ def test_details_page(page, test_web_address, db_connection):
     page.goto(f"http://{test_web_address}/spaces")
     page.click("a[href='/spaces/3']")
     name_element = page.locator(".t-space-name")
-    expect(name_element).to_have_text("Space3")
+    expect(name_element).to_have_text("Sunset Serenity Cottage")
     description_element = page.locator(".t-space-description")
-    expect(description_element).to_have_text("Example description 3")
+    expect(description_element).to_have_text(
+        "Unwind in our charming cottage with breathtaking sunset views. A tranquil setting for a memorable getaway."
+    )
     price_element = page.locator(".t-space-price")
     expect(price_element).to_have_text("£130.00/ night")
     date_element = page.locator(".t-space-date")
@@ -72,16 +80,23 @@ def test_create_space(page, test_web_address, db_connection):
     page.click("button[type='submit']")
     name_element = page.locator(".t-space-name")
     expect(name_element).to_have_text(
-        ["Space1", "Space2", "Space3", "Space4", "Space5", "Test Name"]
+        [
+            "Enchanted Retreat",
+            "Urban Oasis Loft",
+            "Sunset Serenity Cottage",
+            "Luxury Skyline Penthouse",
+            "Seaside Bliss Villa",
+            "Test Name",
+        ]
     )
     description_element = page.locator(".t-space-description")
     expect(description_element).to_have_text(
         [
-            "Example description 1",
-            "Example description 2",
-            "Example description 3",
-            "Example description 4",
-            "Example description 5",
+            "Discover the magic of this hidden gem. A cozy haven surrounded by nature, perfect for a peaceful escape.",
+            "Experience city living at its finest. Our modern loft offers stunning views and all the amenities you need for a stylish stay.",
+            "Unwind in our charming cottage with breathtaking sunset views. A tranquil setting for a memorable getaway.",
+            "Indulge in luxury high above the city. Our penthouse boasts panoramic skyline views and top-notch amenities.",
+            "Escape to paradise in our seaside villa. Relax to the sound of waves and enjoy the ultimate beachfront experience.",
             "Test Description",
         ]
     )
