@@ -17,7 +17,7 @@
 
         <h1 class="t-space-name">{{ space.name }}</h1>
         <p class="t-space-description">{{ space.description }}</p>
-        <p class="t-space-price">£{{ space.price }}</p>
+        <p class="t-space-price">£{{'%0.2f' % space.price|float }}</p>
 
         <table style="width:50%"">
             {% for booking in bookings %}
