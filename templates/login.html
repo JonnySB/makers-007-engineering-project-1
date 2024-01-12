@@ -78,6 +78,10 @@
       <input type="submit" value="Sign In" class="btn btn-primary" />
     </form>
     <a href="/signup">Not a user? Sign up here</a>
+    {% if errors %}
+    <div class="“error text-center" style="color: red">{{errors}}</div>
+    <br /><br />
+    {% endif %}
   </div>
 
   <div class="b-example-divider"></div>
