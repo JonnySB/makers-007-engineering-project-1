@@ -36,7 +36,6 @@ We see the info for that space including a list of booking dates
 And can book a certain date
 """
 
-
 def test_details_page(page, test_web_address, db_connection):
     db_connection.seed("seeds/makers_bnb.sql")
     page.goto(f"http://{test_web_address}/spaces")
@@ -46,13 +45,11 @@ def test_details_page(page, test_web_address, db_connection):
     description_element = page.locator(".t-space-description")
     expect(description_element).to_have_text("Example description 3")
     price_element = page.locator(".t-space-price")
-    expect(price_element).to_have_text("£130.00")
+    expect(price_element).to_have_text("£130.00/ night")
     date_element = page.locator(".t-space-date")
     expect(date_element).to_have_text(["2024-05-10", "2024-05-11", "2024-05-12"])
     availability_element = page.locator(".t-space-availability")
     expect(availability_element).to_have_text(["Available", "Available", "Available"])
-    page.click("a[href='/spaces/rent/8/3']")
-    expect(availability_element).to_have_text(["Available", "Unavailable", "Available"])
 
 
 """

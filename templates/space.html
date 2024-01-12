@@ -1,38 +1,152 @@
 <!DOCTYPE html>
-<html lang="en">
-    <head>
-        <title>Space</title>
-    </head>
-    <body>
-        <style>
-            html {
-                padding: 10px;
-            }
-            nav {
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-            }
-        </style>
+<html lang="en" data-bs-theme="light" data-arp-injected="true">
 
-        <h1 class="t-space-name">{{ space.name }}</h1>
-        <p class="t-space-description">{{ space.description }}</p>
-        <p class="t-space-price">£{{'%0.2f' % space.price|float }}</p>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>List a space</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
+    <meta name="theme-color" content="#712cf9">
+    <style>
+        .b-example-divider {
+            width: 100%;
+            height: 1rem;
+            background-color: rgba(0, 0, 255, 0.1);
+            border: solid rgba(0, 0, 0, 0.15);
+            border-width: 1px 0;
+            box-shadow: inset 0 0.5em 1.5em rgba(0, 0, 0, 0.1),
+                inset 0 0.125em 0.5em rgba(0, 0, 0, 0.15);
+        }
+    </style>
+</head>
 
-        <table style="width:50%"">
-            {% for booking in bookings %}
-                <tr>
-                    <td class="t-space-date">{{ booking.date }}</td>
-                    {% if booking.available == True %}
-                    <td class="t-space-availability">Available</td>
-                    <td><a href="/spaces/rent/{{booking.id}}/{{space.id}}">Rent</a></td>
-                    {% else %}
-                    <td class="t-space-availability">Unavailable</td>
-                    <td>Rent</td>
-                    {% endif %}
-                </tr>
-            {% endfor %}
-        </table>
+<body>
+    <!-- Header of page -->
+    <div class="container">
+        <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3">
+            <div class="col-md-3 mb-2 mb-md-0">
+                <a href="/spaces"><img src="{{ url_for('static', filename='makersbnb_logo.svg') }}" width="100"
+                        height="40" /></a>
+            </div>
 
-    </body>
+            <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+                <li>
+                    <a href="/spaces" class="nav-link px-2 link-secondary">Spaces</a>
+                </li>
+                <li><a href="#" class="nav-link px-2">Requests</a></li>
+            </ul>
+            {% if not logged_in %}
+            <div class="col-md-3 text-end">
+                <a href="/login"><button type="button" class="btn btn-outline-primary me-2">
+                        Login
+                    </button></a>
+                <a href="/signup"><button type="button" class="btn btn-primary">
+                        Sign-up
+                    </button></a>
+            </div>
+            {% else %}
+            <div class="nav col-md-3 justify-content-end">
+                <a class="nav-link px-2 link-secondary">Hey {{ user.username }}!</a>
+                <a href="/logout"><button type="button" class="btn btn-outline-primary me-2">
+                        Logout
+                    </button></a>
+            </div>
+            {% endif %}
+        </header>
+    </div>
+    <!--  -->
+
+    <div class="b-example-divider"></div>
+
+    <div class="container col-xxl-8 px-4 py-5">
+        <div class="row flex-lg-row-reverse align-items-center g-5 py-2">
+            <div class="col-10 col-sm-8 col-lg-6">
+                <img src="{{ url_for('static', filename='makersbnb_property.jpg') }}"
+                    class="d-block mx-lg-auto img-fluid rounded-3" alt="Bootstrap Themes" width="700" height="500"
+                    loading="lazy">
+            </div>
+            <div class="col-lg-6">
+                <h1 class="display-5 fw-bold text-body-emphasis lh-1 mb-3 t-space-name">{{ space.name }}</h1>
+                <p class="lead t-space-description">{{ space.description }}</p>
+                <p class="h4">
+                    <span class="badge bg-primary opacity-80 t-space-price">£{{'%0.2f' % space.price|float }}/
+                        night</span>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="b-example-divider"></div>
+
+    <div class="container">
+        <div class="flex-column flex-md-row p-5 gap-4 py-md-5 align-items-center justify-content-center">
+            <div class="list-group">
+                {% for booking in bookings %}
+                {% if booking.available == True %}
+                {% if not logged_in %}
+                <a href="/signup" class="list-group-item list-group-item-action d-flex gap-3 py-3" aria-current="true">
+                    <div class="d-flex gap-2 w-100 justify-content-between">
+                        <div>
+                            <h6 class="mb-0 t-space-date">{{ booking.date }}</h6>
+                            <p class="mb-0 opacity-75 t-space-availability">
+                                Available
+                            </p>
+                        </div>
+                        <small class="opacity-50 text-nowrap">Click to Rent</small>
+                    </div>
+                </a>
+                {% else %}
+                <a href="/spaces/rent/{{booking.id}}/{{space.id}}"
+                    class="list-group-item list-group-item-action d-flex gap-3 py-3" aria-current="true">
+                    <div class="d-flex gap-2 w-100 justify-content-between">
+                        <div>
+                            <h6 class="mb-0 t-space-date">{{ booking.date }}</h6>
+                            <p class="mb-0 opacity-75 t-space-availability">
+                                Available
+                            </p>
+                        </div>
+                        <small class="opacity-50 text-nowrap">Click to Rent</small>
+                    </div>
+                </a>
+                {% endif %}
+                {% else %}
+                <a href="/manage_bookings" class="list-group-item d-flex gap-3 py-3 list-group-item-dark"
+                    data-bs-toggle="modal" data-bs-target="#exampleModal" aria-current="true">
+                    <div class="d-flex gap-2 w-100 justify-content-between">
+                        <div>
+                            <h6 class="mb-0 t-space-date">{{ booking.date }}</h6>
+                            <p class="mb-0 opacity-75 t-space-availability">
+                                Unavailable
+                            </p>
+                        </div>
+                    </div>
+                </a>
+                <!-- Modal -->
+                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="exampleModalLabel">Sorry!</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                This date is unfortunately unavailable to book. Try booking an available date.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+</body>
+
 </html>
