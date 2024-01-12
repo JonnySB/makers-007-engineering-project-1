@@ -1,4 +1,5 @@
 ## 1. Design and create the Table
+
 ## 2. Create Test SQL seeds
 
 ## 3. Define the class names
@@ -40,7 +41,7 @@ class Space:
 
     def __eq__(self, other):
         return self.__dict__ == other.__dict__
-    
+
     def __repr__(self):
         return f"Space: {self.id}, {self.name}, {self.description}, {self.price}, {self.user_id}"
 
@@ -110,8 +111,8 @@ spaces = repo.all()
 len(spaces) # =>  5
 
 spaces[0].id # =>  1
-spaces[0].name # =>  'Space1'
-spaces[0].description # =>  'Example description 1'
+spaces[0].name # =>  'Enchanted Retreat'
+spaces[0].description # =>  'Discover the magic of this hidden gem. A cozy haven surrounded by nature, perfect for a peaceful escape.'
 spaces[0].price # 130
 spaces[0].user_id # 1
 
