@@ -1,5 +1,5 @@
 import os
-from flask import Flask, request, render_template,redirect
+from flask import Flask, request, render_template, redirect, session
 from lib.database_connection import get_flask_database_connection
 from lib.space_repository import *
 from lib.space import *
@@ -10,17 +10,41 @@ from lib.booking import Booking
 from datetime import datetime, timedelta
 
 # Create a new Flask app
+import secrets
 app = Flask(__name__)
+app.secret_key = secrets.token_hex(16)
 
 # == Your Routes Here ==
 
 
+@app.route("/")
+def set_default_route():
+    return redirect("/spaces")
+
+@app.route("/reseed")
+def reseed_database():
+    connection = get_flask_database_connection(app)
+    connection.connect()
+    connection.seed("seeds/makers_bnb.sql")
+    return redirect("/spaces")
+
+# 'Homepage'
 @app.route("/spaces", methods=["GET"])
 def get_spaces():
     connection = get_flask_database_connection(app)
     space_repo = SpaceRepository(connection)
+
     spaces = space_repo.all()
-    return render_template("spaces/spaces.html", spaces=spaces)
+
+    user_repo = UserRepository(connection)
+    logged_in = session.get('logged_in', False)
+    user_id = session.get('user_id', None)
+    user_details = None
+    if user_id != None:
+        user_details = user_repo.get_user_details(user_id)
+
+    return render_template("spaces/spaces.html", spaces=spaces, logged_in=logged_in, user=user_details)
+
 
 @app.route("/spaces/new", methods=['GET'])
 def get_new_space():
@@ -51,7 +75,8 @@ def create_space():
 
     return redirect(f"/spaces")
 
-@app.route("/spaces/<id>", methods=['GET'])
+
+@app.route("/spaces/<id>", methods=["GET"])
 def get_space(id):
     connection = get_flask_database_connection(app)
     space_repo = SpaceRepository(connection)
@@ -60,16 +85,19 @@ def get_space(id):
     bookings = booking_repo.get_by_id(id)
     return render_template("space.html", space=space, bookings=bookings)
 
-@app.route("/spaces/rent/<booking_id>/<space_id>", methods=['GET'])
+
+@app.route("/spaces/rent/<booking_id>/<space_id>", methods=["GET"])
 def rent_space(booking_id, space_id):
     connection = get_flask_database_connection(app)
     booking_repo = BookingRepository(connection)
     booking_repo.update_availability(booking_id)
     return redirect(f"/spaces/{space_id}")
 
+
 @app.route("/signup", methods=["GET"])
 def get_user_info():
     return render_template("user_signup.html")
+
 
 @app.route("/add_user", methods=["POST"])
 def add_user_to_db():
@@ -78,87 +106,44 @@ def add_user_to_db():
 
     username = request.form["username"]
     email = request.form["email"]
+    password = request.form["password"]
+    # confirm_password
 
-    user = User(None, username, email)
+    user = User(None, username, email, password)
 
     user = user_repository.create(user)
     return redirect(f"/spaces")
 
 
+@app.route("/login", methods=["GET"])
+def render_login_page():
+    return render_template("login.html")
+
+
+@app.route("/login", methods=["POST"])
+def login_user():
+    connection = get_flask_database_connection(app)
+    user_repository = UserRepository(connection)
+
+    username = request.form["user"]
+    password = request.form["password"]
+
+    # Check if user is in db and password matches
+    user_id = user_repository.verify_user_login(username, password)
+
+    # If the user can't be found:
+    if not user_id:
+        return render_template("login.html", errors="Incorrect login details")
+    
+    session['user_id'] = user_id
+    session['logged_in'] = True
+
+    return redirect("/spaces")
+
+
 @app.route("/manage_bookings", methods=["GET"])
 def get_booking_requests():
     return render_template("booking_requests.html")
-
-
-# from flask import Flask, render_template, redirect, url_for, session
-# # Assume you have a method to get the logged-in user ID from the session
-# def get_logged_in_user_id():
-#     return session.get('user_id')
-
-# @app.route("/booking_requests", methods=["GET"])
-# def get_booking_requests():
-#     user_id = get_logged_in_user_id()
-    
-#     if user_id:
-#         connection = get_flask_database_connection(app)
-#         booking_repo = BookingRepository(connection)
-#         booking_requests = booking_repo.get_booking_requests_for_user(user_id)
-#         return render_template("booking_requests.html", booking_requests=booking_requests)
-#     else:
-#         # Redirect to login page if the user is not logged in
-#         return redirect(url_for("login"))
-
-# @app.route("/accept_booking/<int:booking_id>", methods=["GET"])
-# def accept_booking(booking_id):
-#     user_id = get_logged_in_user_id()
-    
-#     if user_id:
-#         connection = get_flask_database_connection(app)
-#         booking_repo = BookingRepository(connection)
-#         booking_repo.accept_booking_request(booking_id)
-#         return redirect(url_for("get_booking_requests"))
-#     else:
-#         # Redirect to login page if the user is not logged in
-#         return redirect(url_for("login"))
-
-# @app.route("/deny_booking/<int:booking_id>", methods=["GET"])
-# def deny_booking(booking_id):
-#     user_id = get_logged_in_user_id()
-    
-#     if user_id:
-#         connection = get_flask_database_connection(app)
-#         booking_repo = BookingRepository(connection)
-#         booking_repo.deny_booking_request(booking_id)
-#         return redirect(url_for("get_booking_requests"))
-#     else:
-#         # Redirect to login page if the user is not logged in
-#         return redirect(url_for("login"))
-
-
-# @app.route("/booking_requests", methods=["GET"])
-# def get_booking_requests():
-#     connection = get_flask_database_connection(app)
-#     booking_repo = BookingRepository(connection)
-#     booking_requests = booking_repo.get_all_booking_requests()
-#     return render_template("booking_requests.html", booking_requests=booking_requests)
-
-# @app.route("/accept_booking/<int:booking_id>", methods=["GET"])
-# def accept_booking(booking_id):
-#     connection = get_flask_database_connection(app)
-#     booking_repo = BookingRepository(connection)
-#     booking_repo.accept_booking_request(booking_id)
-#     return redirect(url_for("get_booking_requests"))
-
-# @app.route("/deny_booking/<int:booking_id>", methods=["GET"])
-# def deny_booking(booking_id):
-#     connection = get_flask_database_connection(app)
-#     booking_repo = BookingRepository(connection)
-#     booking_repo.deny_booking_request(booking_id)
-#     return redirect(url_for("get_booking_requests"))
-
-
-
-
 
 
 # These lines start the server if you run this file directly

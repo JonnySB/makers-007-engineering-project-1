@@ -10,6 +10,7 @@ flask = "*"
 pytest-playwright = "*"
 pytest-xprocess = "*"
 py = "*"
+bcrypt = "*"
 
 [dev-packages]
 autopep8 = "*"
