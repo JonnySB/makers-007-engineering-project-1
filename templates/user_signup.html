@@ -22,11 +22,12 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 200px; /* Set the height to match the logo height */
+            height: 150px;
+            /* Set the height to match the logo height */
         }
 
         form {
-            max-width: 400px;
+            max-width: 300px;
             margin: auto;
         }
 
@@ -51,41 +52,48 @@
             color: #fff;
             border: none;
         }
+
+        a {
+            display: block;
+            margin-top: 20px;
+            text-align: center;
+        }
     </style>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
 </head>
 
 <body>
-        </header>
+    </header>
     </div>
-            <div class="logo-container">
-                <a href="/spaces"><img src="{{ url_for('static', filename='makersbnb_logo.svg') }}" width="200"
-                        height="100" /></a>
-            </div>
+    <div class="logo-container">
+        <a href="/spaces"><img src="{{ url_for('static', filename='makersbnb_logo.svg') }}" width="200"
+                height="100" /></a>
+    </div>
 
-  <div class="b-example-divider"></div>
+    <div class="b-example-divider"></div>
 
-  <div class="container">
-      <form action="/add_user" method="POST">
-          <label for="username">Username</label>
-          <input type="text" name="username" id="username" class="form-control" required />
-          <label for="email">Email</label>
-          <input type="text" name="email" id="email" class="form-control" required />
-          <label for="password">Password</label>
-          <input type="password" name="password" id="password" class="form-control" required />
-          <label for="confirm_password">Confirm Password</label>
-          <input type="password" name="confirm_password" id="confirm_password" class="form-control" required />
-         <br>
-          <input type="submit" value="Sign Up" class="btn btn-primary" />
-      </form>
-  </div>
+    <div class="container">
+        <form action="/add_user" method="POST">
+            <label for="username">Username</label>
+            <input type="text" name="username" id="username" class="form-control" required />
+            <label for="email">Email</label>
+            <input type="text" name="email" id="email" class="form-control" required />
+            <label for="password">Password</label>
+            <input type="password" name="password" id="password" class="form-control" required />
+            <label for="confirm_password">Confirm Password</label>
+            <input type="password" name="confirm_password" id="confirm_password" class="form-control" required />
+            <br>
+            <input type="submit" value="Sign Up" class="btn btn-primary" />
+        </form>
+        <a href="/login">Already a user? Sign in here</a>
+    </div>
 
-  <div class="b-example-divider"></div>
+    <div class="b-example-divider"></div>
 
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
-      crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
     <div class="b-example-divider"></div>
 
 </body>
