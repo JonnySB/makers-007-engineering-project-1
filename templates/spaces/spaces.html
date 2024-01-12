@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 
 <html lang="en" data-bs-theme="light" data-arp-injected="true">
 
@@ -15,7 +15,8 @@
             background-color: rgba(0, 0, 255, 0.1);
             border: solid rgba(0, 0, 0, 0.15);
             border-width: 1px 0;
-            box-shadow: inset 0 0.5em 1.5em rgba(0, 0, 0, 0.1),
+            box-shadow:
+                inset 0 0.5em 1.5em rgba(0, 0, 0, 0.1),
                 inset 0 0.125em 0.5em rgba(0, 0, 0, 0.15);
         }
     </style>
@@ -41,9 +42,7 @@
                 <a href="/login"><button type="button" class="btn btn-outline-primary me-2">
                         Login
                     </button></a>
-                <a href="/signup"><button type="button" class="btn btn-primary">
-                        Sign-up
-                    </button></a>
+                <a href="/signup"><button type="button" class="btn btn-primary">Sign-up</button></a>
             </div>
             {% else %}
             <div class="nav col-md-3 justify-content-end">
@@ -65,8 +64,8 @@
         <h1 class="display-5 fw-bold text-body-emphasis">Book a Space</h1>
         <div class="col-lg-6 mx-auto">
             <p class="lead mb-4">
-                Book from any one of the beautiful spaces listed below. Or
-                feel free to list your own space for others to rent.
+                Book from any one of the beautiful spaces listed below. Or feel free
+                to list your own space for others to rent.
             </p>
             {% if not logged_in %}
             <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
@@ -88,24 +87,22 @@
 
     <!-- row p-4 pb-0 pe-lg-0 pt-lg-5 align-items-center rounded-3 border shadow-lg -->
 
-    <div class="container">
-        <div class="flex-column flex-md-row p-5 gap-4 py-md-5 align-items-center justify-content-center">
-            <div class="list-group">
-                {% for space in spaces %}
-                <a href="/spaces/{{space.id}}" class="list-group-item list-group-item-action d-flex gap-3 py-3"
-                    aria-current="true">
-                    <div class="d-flex gap-2 w-100 justify-content-between">
-                        <div>
-                            <h6 class="mb-0 t-space-name">{{ space.name }}</h6>
-                            <p class="mb-0 opacity-75 t-space-description">
-                                {{ space.description }}
-                            </p>
-                        </div>
-                        <small class="opacity-50 text-nowrap t-space-price">£{{ space.price }}/ night</small>
+    <div class="flex-column flex-md-row p-5 gap-4 py-md-5 align-items-center justify-content-center">
+        <div class="list-group">
+            {% for space in spaces %}
+            <a href="/spaces/{{space.id}}" class="list-group-item list-group-item-action d-flex gap-3 py-3"
+                aria-current="true">
+                <div class="d-flex gap-2 w-100 justify-content-between">
+                    <div>
+                        <h6 class="mb-0 t-space-name">{{ space.name }}</h6>
+                        <p class="mb-0 opacity-75 t-space-description">
+                            {{ space.description }}
+                        </p>
                     </div>
-                </a>
-                {% endfor %}
-            </div>
+                    <small class="opacity-50 text-nowrap t-space-price">£{{'%0.2f' % space.price|float}}/ night</small>
+                </div>
+            </a>
+            {% endfor %}
         </div>
     </div>
 

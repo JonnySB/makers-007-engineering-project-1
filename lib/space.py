@@ -1,5 +1,3 @@
-
-
 class Space:
     def __init__(self, id, name, description, price, user_id):
         self.id = id

@@ -70,7 +70,8 @@
                 <h1 class="display-5 fw-bold text-body-emphasis lh-1 mb-3 t-space-name">{{ space.name }}</h1>
                 <p class="lead t-space-description">{{ space.description }}</p>
                 <p class="h4">
-                    <span class="badge bg-primary opacity-80 t-space-price">£{{ space.price }}/ night</span>
+                    <span class="badge bg-primary opacity-80 t-space-price">£{{'%0.2f' % space.price|float }}/
+                        night</span>
                 </p>
             </div>
         </div>
