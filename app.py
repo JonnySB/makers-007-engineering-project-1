@@ -8,6 +8,7 @@ from lib.user import User
 from lib.booking_repository import BookingRepository
 from lib.booking import Booking
 from datetime import datetime, timedelta
+from lib.booking_request_repository import BookingRequestRepository
 
 # Create a new Flask app
 import secrets
@@ -148,7 +149,14 @@ def logout_user():
 
 @app.route("/manage_bookings", methods=["GET"])
 def get_booking_requests():
-    return render_template("booking_requests.html")
+    connection = get_flask_database_connection(app)
+    request_repo = BookingRequestRepository(connection)
+
+    
+    #Will have selected booking requests based on the user selected
+    requests = request_repo.get_all_booking_requests()
+
+    return render_template("booking_requests.html", requests = requests)
 
 
 # These lines start the server if you run this file directly

@@ -25,6 +25,8 @@ class BookingRequestRepository:
                 )
             )
         return booking_requests
+    
+
     def accept_booking_request(self, booking_requests_id):
         self._connection.execute(
             "UPDATE booking_requests "
@@ -59,3 +61,20 @@ class BookingRequestRepository:
             "WHERE id = %s",
             [booking_requests_id]
         )
+
+    def get_all_booking_requests(self):
+        rows = self._connection.execute(
+            "SELECT * FROM booking_requests"
+        )
+        bookings = []
+        for row in rows:
+            bookings.append(
+                BookingRequest(
+                    row["id"],
+                    row["guest_id"],
+                    row["pending"],
+                    row["accepted"],
+                    row["booking_id"],
+                )
+            )
+        return bookings
