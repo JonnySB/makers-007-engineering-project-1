@@ -41,7 +41,7 @@ def test_details_page(page, test_web_address, db_connection):
     description_element = page.locator(".t-space-description")
     expect(description_element).to_have_text("Example description 3")
     price_element = page.locator(".t-space-price")
-    expect(price_element).to_have_text("£130.0")
+    expect(price_element).to_have_text("£130.0/ night")
     date_element = page.locator(".t-space-date")
     expect(date_element).to_have_text(["2024-05-10", "2024-05-11", "2024-05-12"])
     availability_element = page.locator(".t-space-availability")
