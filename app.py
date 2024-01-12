@@ -140,6 +140,11 @@ def login_user():
 
     return redirect("/spaces")
 
+@app.route("/logout", methods=["GET"])
+def logout_user():
+    session['user_id'] = None
+    session['logged_in'] = False
+    return redirect(f"/spaces")
 
 # These lines start the server if you run this file directly
 # They also start the server configured to use the test database
