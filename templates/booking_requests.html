@@ -73,6 +73,8 @@
 <body>
 
     {{ requests }}
+    <br>
+    {{ bookings }}
 
     <header>
         Booking Requests
@@ -85,33 +87,27 @@
                     <th>ID</th>
                     <th>Date</th>
                     <th>Availability</th>
-                    <th>Space ID</th>
+                    <!-- <th>Space ID</th> -->
                     <th>Action</th>
                 </tr>
             </thead>
             <tbody>
-                <!-- Use your template engine to iterate over booking requests and fill in the data -->
+                {% for request in requests: %}
                 <tr>
-                    <td>1</td>
-                    <td>2024-05-10</td>
-                    <td>True</td>
-                    <td>1</td>
+                    <td>{{ request.id }}</td>
+                    {% for booking in bookings: %}
+                    {% if request.booking_id == booking.id %}
+                    <td>{{ booking.date }}</td>
+                    {% endif %}
+                    {% endfor %}
+                    <td>{{ True if request.pending == True else False }}</td>
+                    <!-- <td>1 (from booking)</td> -->
                     <td class="action-buttons">
-                        <button class="accept-button" onclick="acceptBooking(1)">Accept</button>
-                        <button class="deny-button" onclick="denyBooking(1)">Deny</button>
+                        <button class="accept-button" onclick="accept_booking_request(requests.id)">Accept</button>
+                        <button class="deny-button" onclick="reject_booking_request(requests.id)">Reject</button>
                     </td>
                 </tr>
-                <tr>
-                    <td>2</td>
-                    <td>2024-05-11</td>
-                    <td>False</td>
-                    <td>1</td>
-                    <td class="action-buttons">
-                        <button class="accept-button" onclick="acceptBooking(2)">Accept</button>
-                        <button class="deny-button" onclick="denyBooking(2)">Deny</button>
-                    </td>
-                </tr>
-                <!-- Add more rows as needed -->
+                {% endfor %}
             </tbody>
         </table>
     </main>
@@ -119,18 +115,6 @@
     <footer>
         <a href="/">Go to Home Page</a>
     </footer>
-
-    <script>
-        function acceptBooking(bookingId) {
-            // Add logic to handle accepting the booking request with the specified ID
-            console.log("Accepting booking request with ID: " + bookingId);
-        }
-
-        function denyBooking(bookingId) {
-            // Add logic to handle denying the booking request with the specified ID
-            console.log("Denying booking request with ID: " + bookingId);
-        }
-    </script>
 
 </body>
 

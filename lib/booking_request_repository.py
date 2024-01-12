@@ -1,8 +1,10 @@
 from lib.booking import Booking
 from lib.booking_request import BookingRequest
+
 class BookingRequestRepository:
     def __init__(self, connection):
         self._connection = connection
+        
     def create_booking_request(self, booking_request):
         self._connection.execute(
             'INSERT INTO booking_requests (guest_id, pending, accepted, booking_id) VALUES (%s, %s, %s, %s)', 

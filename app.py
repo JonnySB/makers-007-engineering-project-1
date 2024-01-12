@@ -151,12 +151,16 @@ def logout_user():
 def get_booking_requests():
     connection = get_flask_database_connection(app)
     request_repo = BookingRequestRepository(connection)
+    booking_repo = BookingRepository(connection)
 
+    # hardcoded space_id for now, in future 'spaces' will grab all spaces
+    space_id = 1
     
     #Will have selected booking requests based on the user selected
     requests = request_repo.get_all_booking_requests()
+    bookings = booking_repo.get_by_id(space_id)
 
-    return render_template("booking_requests.html", requests = requests)
+    return render_template("booking_requests.html", requests = requests, bookings=bookings)
 
 
 # These lines start the server if you run this file directly
