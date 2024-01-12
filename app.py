@@ -16,6 +16,13 @@ app.secret_key = secrets.token_hex(16)
 
 # == Your Routes Here ==
 
+def get_user_details(connection):
+    user_repo = UserRepository(connection)
+    user_id = session.get('user_id', None)
+    user_details = None
+    if user_id != None:
+        user_details = user_repo.get_user_details(user_id)
+    return user_details
 
 @app.route("/")
 def set_default_route():
@@ -36,19 +43,20 @@ def get_spaces():
 
     spaces = space_repo.all()
 
-    user_repo = UserRepository(connection)
     logged_in = session.get('logged_in', False)
-    user_id = session.get('user_id', None)
-    user_details = None
-    if user_id != None:
-        user_details = user_repo.get_user_details(user_id)
+    user_details = get_user_details(connection)
 
     return render_template("spaces/spaces.html", spaces=spaces, logged_in=logged_in, user=user_details)
 
 
 @app.route("/spaces/new", methods=['GET'])
 def get_new_space():
-    return render_template('spaces/new.html')
+    connection = get_flask_database_connection(app)
+
+    logged_in = session.get('logged_in', False)
+    user_details = get_user_details(connection)
+
+    return render_template('spaces/new.html', logged_in=logged_in, user=user_details)
 
 @app.route("/spaces", methods=['POST'])
 def create_space():
@@ -62,7 +70,9 @@ def create_space():
     available_from = request.form['available_from']
     available_to = request.form['available_to']
 
-    space = Space(None, name, description, price, None) # needs to include user_id once login functionality added
+    user_details = get_user_details(connection)
+
+    space = Space(None, name, description, price, user_details.id) # needs to include user_id once login functionality added
     space = space_repository.create(space)
 
     available_from = datetime.strptime(available_from, '%Y-%m-%d')
@@ -83,7 +93,11 @@ def get_space(id):
     booking_repo = BookingRepository(connection)
     space = space_repo.find(id)
     bookings = booking_repo.get_by_id(id)
-    return render_template("space.html", space=space, bookings=bookings)
+
+    logged_in = session.get('logged_in', False)
+    user_details = get_user_details(connection)
+
+    return render_template("space.html", space=space, bookings=bookings, logged_in=logged_in, user=user_details)
 
 
 @app.route("/spaces/rent/<booking_id>/<space_id>", methods=["GET"])
@@ -112,7 +126,7 @@ def add_user_to_db():
     user = User(None, username, email, password)
 
     user = user_repository.create(user)
-    return redirect(f"/spaces")
+    return redirect("/login")
 
 
 @app.route("/login", methods=["GET"])
