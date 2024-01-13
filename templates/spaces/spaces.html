@@ -35,7 +35,11 @@
                 <li>
                     <a href="/spaces" class="nav-link px-2 link-secondary">Spaces</a>
                 </li>
+                {% if not logged_in %}
+                <li><a href="/signup" class="nav-link px-2">Requests</a></li>
+                {% else %}
                 <li><a href="/manage_bookings" class="nav-link px-2">Requests</a></li>
+                {% endif %}
             </ul>
             {% if not logged_in %}
             <div class="col-md-3 text-end">

@@ -173,8 +173,10 @@ def get_booking_requests():
     #Will have selected booking requests based on the user selected
     requests = request_repo.get_all_booking_requests()
     bookings = booking_repo.get_by_id(space_id)
+    logged_in = session.get('logged_in', False)
+    user_details = get_user_details(connection)
 
-    return render_template("booking_requests.html", requests = requests, bookings=bookings)
+    return render_template("booking_requests.html", requests = requests, bookings=bookings, logged_in=logged_in, user=user_details)
 
 
 # These lines start the server if you run this file directly
