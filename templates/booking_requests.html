@@ -89,19 +89,21 @@
 
     <div class="b-example-divider"></div>
 
-    {{ requests }}
-    <br>
-    {{ bookings }}
+    <div class="container">
+        requests: {{ requests }}
+        <br>
+        bookings: {{ bookings }}
+    </div>
 
     <div class="container">
         <table>
+            <!-- comment out this header in production -->
             <thead>
                 <tr>
-                    <th>Booking ID</th>
+                    <th>Booking ID => Space Name</th>
+                    <th>Guest ID => Guest Username</th>
                     <th>Date</th>
-                    <th>Guest ID</th>
-                    <th>Availability</th>
-                    <!-- <th>Space ID</th> -->
+                    <th>Status</th>
                     <th>Action</th>
                 </tr>
             </thead>
@@ -109,15 +111,13 @@
                 {% for request in requests: %}
                 <tr>
                     <td>{{ request.id }}</td>
+                    <td>{{ request.guest_id }}</td>
                     {% for booking in bookings: %}
                     {% if request.booking_id == booking.id %}
                     <td>{{ booking.date }}</td>
                     {% endif %}
                     {% endfor %}
-                    <!-- later replace request.guest_id with users.username -->
-                    <td>{{ request.guest_id }}</td>
-                    <td>{{ True if request.pending == True else False }}</td>
-                    <!-- <td>1 (from booking)</td> -->
+                    <td>{{ 'pending' if request.pending == True else 'accepted' }}</td>
                     <td class="action-buttons">
                         <button class="accept-button" onclick="accept_booking_request(requests.id)">Accept</button>
                         <button class="deny-button" onclick="reject_booking_request(requests.id)">Reject</button>

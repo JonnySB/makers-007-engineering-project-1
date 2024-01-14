@@ -4,7 +4,7 @@ from lib.booking_request import BookingRequest
 class BookingRequestRepository:
     def __init__(self, connection):
         self._connection = connection
-        
+
     def create_booking_request(self, booking_request):
         self._connection.execute(
             'INSERT INTO booking_requests (guest_id, pending, accepted, booking_id) VALUES (%s, %s, %s, %s)', 
@@ -27,7 +27,6 @@ class BookingRequestRepository:
                 )
             )
         return booking_requests
-    
 
     def accept_booking_request(self, booking_requests_id):
         self._connection.execute(
@@ -55,7 +54,6 @@ class BookingRequestRepository:
             [booking_id]
         )
 
-        
     def reject_booking_request(self, booking_requests_id):
         self._connection.execute(
             "UPDATE booking_requests "
