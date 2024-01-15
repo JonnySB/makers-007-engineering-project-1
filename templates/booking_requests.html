@@ -21,6 +21,7 @@
         }
 
         .action-buttons button {
+
             margin-right: 10px;
             cursor: pointer;
             border: none;
@@ -28,6 +29,10 @@
             border-radius: 4px;
             font-size: 14px;
             transition: background-color 0.3s;
+        }
+        .action-buttons {
+            display: flex;
+            flex-direction: row;
         }
 
         .accept-button {
@@ -89,7 +94,7 @@
 
     <div class="b-example-divider"></div>
 
-    <div class="container">
+    <!-- <div class="container">
         requests: {{ requests }}
         <br>
         all bookings for all user spaces: {{ bookings }}
@@ -99,7 +104,7 @@
         spaces: {{ spaces }}
         <br>
         users: {{ users }}
-    </div>
+    </div> -->
 
     <div class="container">
         <table>
@@ -107,7 +112,7 @@
             <thead>
                 <tr>
                     <th>Space Name</th>
-                    <th>Guest ID => Guest Username</th>
+                    <th>Guest Username</th>
                     <th>Date</th>
                     <th>Status</th>
                     <th>Action</th>
@@ -116,9 +121,11 @@
             <tbody>
                 {% for request in requests: %}
                 <tr>
+                    {% set booking_requests_id = 1 %}
                     {% for space in spaces: %}
                         {% for booking in bookings: %}
                             {% if request.booking_id == booking.id %}
+                                {% set booking_requests_id = request.id %}
                                 {% if booking.space_id == space.id %}
                                 <td>{{ space.name }}</td>
                                 {% endif %}
@@ -137,8 +144,18 @@
                     {% endfor %}
                     <td>{{ 'pending' if request.pending == True else 'accepted' }}</td>
                     <td class="action-buttons">
-                        <button class="accept-button" >Accept</button>
-                        <button class="deny-button" >Reject</button>
+                        <div>
+                            <form method="post" action="{{ url_for('accept_request') }}"></form>
+                                <input type="hidden" name="booking_requests_id" value="{{ booking_requests_id }}">
+                                <button type="submit" class="accept-button" >Accept</button>
+                            </form>
+                        </div>
+                        <div>
+                            <form method="post" action="{{ url_for('reject_request') }}"></form>
+                                <input type="hidden" name="booking_requests_id" value="{{ booking_requests_id }}">
+                                <button type="submit" class="deny-button" >Reject</button>
+                            </form>
+                        </div>
                     </td>
                 </tr>
                 {% endfor %}
