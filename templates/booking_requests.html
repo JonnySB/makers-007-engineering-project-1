@@ -77,7 +77,7 @@
             </div>
             {% else %}
             <div class="nav col-md-3 justify-content-end">
-                <a class="nav-link px-2 link-secondary">Hey {{ user.username }}!</a>
+                <a class="nav-link px-2 link-secondary">Hey {{ current_user.username }}!</a>
                 <a href="/logout"><button type="button" class="btn btn-outline-primary me-2">
                         Logout
                     </button></a>
@@ -92,7 +92,13 @@
     <div class="container">
         requests: {{ requests }}
         <br>
-        bookings: {{ bookings }}
+        all bookings for all user spaces: {{ bookings }}
+        <br>
+        current_user: {{ current_user }}
+        <br>
+        spaces: {{ spaces }}
+        <br>
+        users: {{ users }}
     </div>
 
     <div class="container">
@@ -100,7 +106,7 @@
             <!-- comment out this header in production -->
             <thead>
                 <tr>
-                    <th>Booking ID => Space Name</th>
+                    <th>Space Name</th>
                     <th>Guest ID => Guest Username</th>
                     <th>Date</th>
                     <th>Status</th>
@@ -110,17 +116,29 @@
             <tbody>
                 {% for request in requests: %}
                 <tr>
-                    <td>{{ request.id }}</td>
-                    <td>{{ request.guest_id }}</td>
+                    {% for space in spaces: %}
+                        {% for booking in bookings: %}
+                            {% if request.booking_id == booking.id %}
+                                {% if booking.space_id == space.id %}
+                                <td>{{ space.name }}</td>
+                                {% endif %}
+                            {% endif %}
+                        {% endfor %}
+                    {% endfor %}
+                    {% for user in users: %}
+                        {% if user.id == request.guest_id %}
+                            <td>{{ user.username }}</td>
+                        {% endif %}
+                    {% endfor %}
                     {% for booking in bookings: %}
-                    {% if request.booking_id == booking.id %}
-                    <td>{{ booking.date }}</td>
-                    {% endif %}
+                        {% if request.booking_id == booking.id %}
+                        <td>{{ booking.date }}</td>
+                        {% endif %}
                     {% endfor %}
                     <td>{{ 'pending' if request.pending == True else 'accepted' }}</td>
                     <td class="action-buttons">
-                        <button class="accept-button" onclick="accept_booking_request(requests.id)">Accept</button>
-                        <button class="deny-button" onclick="reject_booking_request(requests.id)">Reject</button>
+                        <button class="accept-button" >Accept</button>
+                        <button class="deny-button" >Reject</button>
                     </td>
                 </tr>
                 {% endfor %}

@@ -9,6 +9,7 @@ from lib.booking_repository import BookingRepository
 from lib.booking import Booking
 from datetime import datetime, timedelta
 from lib.booking_request_repository import BookingRequestRepository
+from lib.space_repository import SpaceRepository
 
 # Create a new Flask app
 import secrets
@@ -166,17 +167,55 @@ def get_booking_requests():
     connection = get_flask_database_connection(app)
     request_repo = BookingRequestRepository(connection)
     booking_repo = BookingRepository(connection)
-
-    # hardcoded space_id for now, in future 'spaces' will grab all spaces
-    space_id = 1
+    space_repo = SpaceRepository(connection)
+    user_repo = UserRepository(connection)
     
-    #Will have selected booking requests based on the user selected
-    requests = request_repo.get_all_booking_requests()
-    bookings = booking_repo.get_by_id(space_id)
-    logged_in = session.get('logged_in', False)
-    user_details = get_user_details(connection)
+    # will have selected booking requests based on the current_user
+    all_requests = request_repo.get_all_booking_requests()
+    requests = []
 
-    return render_template("booking_requests.html", requests = requests, bookings=bookings, logged_in=logged_in, user=user_details)
+    logged_in = session.get('logged_in', False)
+
+    if logged_in:
+        # all spaces of the current_user
+        all_spaces = space_repo.all()
+        spaces = []
+
+        # only get the requests for the current user spaces
+        user_details = get_user_details(connection)
+        current_user = user_details
+        users = user_repo.all()
+
+        for space in all_spaces:
+            if space.user_id == current_user.id:
+                spaces.append(space)
+        
+        all_spaces_bookings = []
+        for space in spaces:
+            all_spaces_bookings.append(booking_repo.get_by_id(space.id))
+
+        bookings = []
+        for space in all_spaces_bookings:
+            for booking in space:
+                bookings.append(booking)
+        
+        bookings = list(filter(None, bookings))
+
+        for booking in bookings:
+            for request in all_requests:
+                if booking.id == request.booking_id:
+                    requests.append(request)
+
+        return render_template("booking_requests.html", requests = requests, bookings=bookings, logged_in=logged_in, current_user=current_user, spaces=spaces, users=users)
+    else:
+        return redirect("/login")
+    
+@app.route("/manage_bookings", methods=["POST"])
+def accept_request():
+    connection = get_flask_database_connection(app)
+
+
+    return redirect("/manage_bookings")
 
 
 # These lines start the server if you run this file directly

@@ -62,25 +62,6 @@ CREATE TABLE booking_requests (
         on delete cascade  
 );
 
-----------------
-
-DROP TABLE IF EXISTS booking_requests CASCADE;
-DROP SEQUENCE IF EXISTS booking_requests_id_seq;
-
-CREATE SEQUENCE IF NOT EXISTS booking_requests_id_seq;
-CREATE TABLE booking_requests (
-    id SERIAL PRIMARY KEY,
-    guest_id int,
-    constraint fk_user foreign key(guest_id)
-        references users(id)
-        on delete cascade,  
-    pending boolean,
-    accepted boolean,
-    booking_id int,
-    constraint fk_booking foreign key(booking_id)
-        references bookings(id)
-        on delete cascade  
-);
 
 INSERT INTO users (username, email, hashed_password) VALUES ('user1', 'user1@user.com', '\x243262243132247869754d4f49332f43434a713167786d78505152567538782f5269726d4a32303450424d6a53766f7464744a4476436641616e3761');
 INSERT INTO users (username, email, hashed_password) VALUES ('user2', 'user2@user.com', '\x243262243132247869754d4f49332f43434a713167786d78505152567538782f5269726d4a32303450424d6a53766f7464744a4476436641616e3761');
@@ -95,8 +76,8 @@ INSERT INTO spaces (name, description, price, user_id) VALUES ('Luxury Skyline P
 INSERT INTO spaces (name, description, price, user_id) VALUES ('Seaside Bliss Villa', 'Escape to paradise in our seaside villa. Relax to the sound of waves and enjoy the ultimate beachfront experience.', 130, 1);
 
 INSERT INTO bookings (date, available, space_id) VALUES ('2024-05-10', 'TRUE', 1);
-INSERT INTO bookings (date, available, space_id) VALUES ('2024-05-11', 'FALSE', 1);
-INSERT INTO bookings (date, available, space_id) VALUES ('2024-05-12', 'FALSE', 1);
+INSERT INTO bookings (date, available, space_id) VALUES ('2024-05-11', 'TRUE', 1);
+INSERT INTO bookings (date, available, space_id) VALUES ('2024-05-12', 'TRUE', 1);
 
 INSERT INTO bookings (date, available, space_id) VALUES ('2024-05-10', 'FALSE', 2);
 INSERT INTO bookings (date, available, space_id) VALUES ('2024-05-11', 'FALSE', 2);
@@ -110,6 +91,6 @@ INSERT INTO bookings (date, available, space_id) VALUES ('2024-05-10', 'TRUE', 4
 INSERT INTO bookings (date, available, space_id) VALUES ('2024-05-11', 'TRUE', 4);
 INSERT INTO bookings (date, available, space_id) VALUES ('2024-05-12', 'TRUE', 4);
 
-INSERT INTO booking_requests (guest_id, pending, accepted, booking_id) VALUES (1, 'TRUE', 'FALSE', 1);
-INSERT INTO booking_requests (guest_id, pending, accepted, booking_id) VALUES (1, 'TRUE', 'FALSE', 2);
-INSERT INTO booking_requests (guest_id, pending, accepted, booking_id) VALUES (1, 'TRUE', 'FALSE', 3);
+INSERT INTO booking_requests (guest_id, pending, accepted, booking_id) VALUES (2, 'TRUE', 'FALSE', 1);
+INSERT INTO booking_requests (guest_id, pending, accepted, booking_id) VALUES (2, 'TRUE', 'FALSE', 2);
+INSERT INTO booking_requests (guest_id, pending, accepted, booking_id) VALUES (2, 'TRUE', 'FALSE', 3);
