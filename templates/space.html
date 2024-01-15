@@ -106,7 +106,14 @@
                                 Available
                             </p>
                         </div>
-                        <small class="opacity-50 text-nowrap">Click to Rent</small>
+                        <div>
+                            <form method="post" action="/space/rent/{{booking.id}}/{{space.id}}">
+                                <input type="hidden" name="booking_id" value="{{ booking.id }}">
+                                <input type="hidden" name="space_id" value="{{ space.id }}">
+                                <!-- <button type="submit" class="accept-button" >Accept</button> -->
+                                <button type="submit" class="opacity-50 text-nowrap">Click to Rent</button>
+                            </form>
+                        </div>
                     </div>
                 </a>
                 {% endif %}

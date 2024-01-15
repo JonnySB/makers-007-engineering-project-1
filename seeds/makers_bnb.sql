@@ -59,7 +59,9 @@ CREATE TABLE booking_requests (
     booking_id int,
     constraint fk_booking foreign key(booking_id)
         references bookings(id)
-        on delete cascade  
+        on delete cascade,
+    -- Adding a unique constraint on guest_id and booking_id
+    CONSTRAINT unique_guest_booking_pair UNIQUE (guest_id, booking_id)  
 );
 
 

@@ -5,11 +5,12 @@ class BookingRequestRepository:
     def __init__(self, connection):
         self._connection = connection
 
-    def create_booking_request(self, booking_request):
+    def create_booking_request(self, guest_id, booking_id):
         self._connection.execute(
             'INSERT INTO booking_requests (guest_id, pending, accepted, booking_id) VALUES (%s, %s, %s, %s)', 
-            [booking_request.guest_id, booking_request.pending, booking_request.accepted, booking_request.booking_id],
+            [guest_id, True, False, booking_id],
         )
+
     def get_booking_requests_for_user(self, user_id):
         rows = self._connection.execute(
             "SELECT * FROM booking_requests WHERE guest_id = %s ORDER BY id",

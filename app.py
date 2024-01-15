@@ -1,5 +1,5 @@
 import os
-from flask import Flask, request, render_template, redirect, session
+from flask import Flask, request, render_template, redirect, session, url_for, flash
 from lib.database_connection import get_flask_database_connection
 from lib.space_repository import *
 from lib.space import *
@@ -10,6 +10,7 @@ from lib.booking import Booking
 from datetime import datetime, timedelta
 from lib.booking_request_repository import BookingRequestRepository
 from lib.space_repository import SpaceRepository
+from psycopg2 import errors
 
 # Create a new Flask app
 import secrets
@@ -102,12 +103,36 @@ def get_space(id):
     return render_template("space.html", space=space, bookings=bookings, logged_in=logged_in, user=user_details)
 
 
-@app.route("/spaces/rent/<booking_id>/<space_id>", methods=["GET"])
-def rent_space(booking_id, space_id):
+# @app.route("/spaces/rent/<booking_id>/<space_id>", methods=["GET"])
+# def rent_space(booking_id, space_id):
+#     connection = get_flask_database_connection(app)
+#     booking_repo = BookingRepository(connection)
+#     booking_repo.update_availability(booking_id)
+#     return redirect(f"/spaces/{space_id}")
+
+@app.route("/space/rent/<booking_id>/<space_id>", methods=["POST"])
+def create_booking_request(booking_id, space_id):
     connection = get_flask_database_connection(app)
-    booking_repo = BookingRepository(connection)
-    booking_repo.update_availability(booking_id)
+    request_repo = BookingRequestRepository(connection)
+
+    current_user = get_user_details(connection)
+    guest_id = current_user.id
+
+    try:
+        request_repo.create_booking_request(guest_id, booking_id)
+        flash("Booking request sent successfully!", "success")
+    except errors.UniqueViolation:
+        flash("You already sent a booking request for this date", "error")
+
     return redirect(f"/spaces/{space_id}")
+
+    # try:
+    #     request_repo.create_booking_request(guest_id, booking_id)
+    # except errors.UniqueViolation:
+    #     flash("You already sent a booking request for this date", "error")
+    #     return redirect(f"/spaces/{space_id}")
+
+    # return redirect(f"/spaces/{space_id}")
 
 
 @app.route("/signup", methods=["GET"])
@@ -214,22 +239,14 @@ def get_booking_requests():
 def accept_request(booking_requests_id):
     connection = get_flask_database_connection(app)
     request_repo = BookingRequestRepository(connection)
-
-    # booking_requests_id = request.form['booking_requests_id']
-
     request_repo.accept_booking_request(booking_requests_id)
-
     return redirect("/manage_bookings")
 
 @app.route("/manage_bookings/reject/<booking_requests_id>", methods=["POST"])
 def reject_request(booking_requests_id):
     connection = get_flask_database_connection(app)
     request_repo = BookingRequestRepository(connection)
-
-    # booking_requests_id = request.form['booking_requests_id']
-
     request_repo.reject_booking_request(booking_requests_id)
-
     return redirect("/manage_bookings")
 
 
