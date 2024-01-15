@@ -210,23 +210,23 @@ def get_booking_requests():
     else:
         return redirect("/login")
     
-@app.route("/manage_bookings/accept", methods=["POST"])
-def accept_request():
+@app.route("/manage_bookings/accept/<booking_requests_id>", methods=["POST"])
+def accept_request(booking_requests_id):
     connection = get_flask_database_connection(app)
     request_repo = BookingRequestRepository(connection)
 
-    booking_requests_id = request.form['booking_requests_id']
+    # booking_requests_id = request.form['booking_requests_id']
 
     request_repo.accept_booking_request(booking_requests_id)
 
     return redirect("/manage_bookings")
 
-@app.route("/manage_bookings/reject", methods=["POST"])
-def reject_request():
+@app.route("/manage_bookings/reject/<booking_requests_id>", methods=["POST"])
+def reject_request(booking_requests_id):
     connection = get_flask_database_connection(app)
     request_repo = BookingRequestRepository(connection)
 
-    booking_requests_id = request.form['booking_requests_id']
+    # booking_requests_id = request.form['booking_requests_id']
 
     request_repo.reject_booking_request(booking_requests_id)
 

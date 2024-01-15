@@ -61,6 +61,18 @@ class BookingRequestRepository:
             "WHERE id = %s",
             [booking_requests_id]
         )
+        booking_id = self._connection.execute(
+            "SELECT booking_id "
+            "FROM booking_requests "
+            "WHERE id = %s",
+            [booking_requests_id]
+        )[0]['booking_id']
+        self._connection.execute(
+            "UPDATE bookings "
+            "SET available = TRUE "
+            "WHERE id = %s",
+            [booking_id]
+        )
 
     def get_all_booking_requests(self):
         rows = self._connection.execute(

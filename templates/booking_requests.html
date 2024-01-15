@@ -121,7 +121,7 @@
             <tbody>
                 {% for request in requests: %}
                 <tr>
-                    {% set booking_requests_id = 1 %}
+                    <!-- {% set booking_requests_id = 0 %} -->
                     {% for space in spaces: %}
                         {% for booking in bookings: %}
                             {% if request.booking_id == booking.id %}
@@ -142,17 +142,21 @@
                         <td>{{ booking.date }}</td>
                         {% endif %}
                     {% endfor %}
-                    <td>{{ 'pending' if request.pending == True else 'accepted' }}</td>
+                    {% for booking in bookings: %}
+                        {% if request.booking_id == booking.id %}
+                        <td>{{ 'pending' if request.pending == True else 'accepted' if booking.available == False else 'rejected' }}</td>
+                        {% endif %}
+                    {% endfor %}
                     <td class="action-buttons">
                         <div>
-                            <form method="post" action="{{ url_for('accept_request') }}"></form>
-                                <input type="hidden" name="booking_requests_id" value="{{ booking_requests_id }}">
+                            <form method="post" action="/manage_bookings/accept/{{request.booking_id}}">
+                                <input type="hidden" name="request.booking_id" value="{{ request.booking_id }}">
                                 <button type="submit" class="accept-button" >Accept</button>
                             </form>
                         </div>
                         <div>
-                            <form method="post" action="{{ url_for('reject_request') }}"></form>
-                                <input type="hidden" name="booking_requests_id" value="{{ booking_requests_id }}">
+                            <form method="post" action="/manage_bookings/reject/{{request.booking_id}}">
+                                <input type="hidden" name="request.booking_id" value="{{ request.booking_id }}">
                                 <button type="submit" class="deny-button" >Reject</button>
                             </form>
                         </div>
