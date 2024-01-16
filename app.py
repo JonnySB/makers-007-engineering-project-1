@@ -188,6 +188,17 @@ def logout_user():
     return redirect(f"/spaces")
 
 @app.route("/manage_bookings", methods=["GET"])
+def get_booking_requests_for_user():
+    connection = get_flask_database_connection(app)
+    request_repo = BookingRequestRepository(connection)
+
+    user_details = get_user_details(connection)
+    bookings = request_repo.get_bookings_by_user(user_details.id)
+    logged_in = session.get('logged_in', False)
+    print(bookings)
+
+    return render_template("booking_requests_new.html", logged_in=logged_in, bookings=bookings, user=user_details)
+
 def get_booking_requests():
     connection = get_flask_database_connection(app)
     request_repo = BookingRequestRepository(connection)

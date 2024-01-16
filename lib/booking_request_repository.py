@@ -1,5 +1,6 @@
 from lib.booking import Booking
 from lib.booking_request import BookingRequest
+from lib.booking_manager import BookingManager
 
 class BookingRequestRepository:
     def __init__(self, connection):
@@ -91,3 +92,25 @@ class BookingRequestRepository:
                 )
             )
         return bookings
+    
+    def get_bookings_by_user(self, user_id):
+        user_bookings = self._connection.execute("SELECT booking_requests.id, spaces.name, users.username, bookings.date, booking_requests.pending, booking_requests.accepted"
+                        " FROM booking_requests"
+                        " JOIN users on booking_requests.guest_id = users.id"
+                        " JOIN bookings on booking_requests.booking_id = bookings.id"
+                        " JOIN spaces on bookings.space_id = spaces.id"
+                        " WHERE spaces.user_id = %s"
+                        " ORDER BY pending DESC, date", [user_id])
+        bookings_to_return = []
+        for booking in user_bookings:
+            bookings_to_return.append(
+                BookingManager(
+                    booking["id"],
+                    booking["name"],
+                    booking["username"],
+                    booking["date"],
+                    booking["pending"],
+                    booking["accepted"]
+                )
+            )
+        return bookings_to_return
